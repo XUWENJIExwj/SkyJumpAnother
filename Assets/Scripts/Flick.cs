@@ -28,6 +28,8 @@ public class Flick : MonoBehaviour
     {
         cam = Camera.main;
         //objWithFlick.DisactivateRb();
+
+        float y = ScreenInfo.screenCoefficient.y;
     }
 
     // Update is called once per frame
