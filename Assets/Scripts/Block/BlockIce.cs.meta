@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 85fbed7d1c3169842a6d1da3e9f2db71
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - PlayerRb: {instanceID: 0}
+  - ice: {fileID: 6200000, guid: ab7b635746d59104e8a639c45b66b786, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
