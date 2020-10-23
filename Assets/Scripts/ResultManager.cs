@@ -108,7 +108,7 @@ public class ResultManager : MonoBehaviour
         canvasManager.SetScoreBestSize(0.48f, 0.48f);
 
         // BGMの再生
-        audioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
+        //audioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
 
         hasCreatedSoul = false;
 
@@ -166,7 +166,7 @@ public class ResultManager : MonoBehaviour
         rank.SaveRank(idx);
         //rank.SaveRankBinary();
 
-        audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
+        //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
         inputer.gameObject.SetActive(false);
     }
 
@@ -174,7 +174,7 @@ public class ResultManager : MonoBehaviour
     {
         inputer.textComponent.text = "";
 
-        audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
+        //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
         inputer.gameObject.SetActive(false);
     }
 

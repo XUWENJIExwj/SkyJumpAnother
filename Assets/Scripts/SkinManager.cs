@@ -6,7 +6,6 @@ using DG.Tweening;
 
 public class SkinManager : MonoBehaviour
 {
-    //[SerializeField] private GameObject skins = null;
     [SerializeField] private RectTransform[] skinIcon = null; 
     [SerializeField] private SkinSupport skinSupport = null;
     [SerializeField] private Color[] colors = null;
@@ -14,7 +13,7 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private Color playerColor = Color.white;
     [SerializeField] private int playerType = 0;
     [SerializeField] private Image[] images = null;
-    [SerializeField] private AudioManager audioManager;
+    //[SerializeField] private AudioManager audioManager;
 
     public enum MoveState
     {
@@ -35,7 +34,7 @@ public class SkinManager : MonoBehaviour
             {
                 skinIcon[i].DOMoveY(skinIcon[i].position.y + (i + 1) * 160, 0.5f).OnComplete(() => { moveState = MoveState.MOVE_STATE_STOP_UP; });
             }
-            audioManager.PlaySE(AudioManager.SE.SE_TITLE, 1, 0.5f);
+            AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
         }
         else if (moveState == MoveState.MOVE_STATE_STOP_UP)
         {
@@ -44,7 +43,7 @@ public class SkinManager : MonoBehaviour
             {
                 skinIcon[i].DOMoveY(skinIcon[i].position.y - (i + 1) * 160, 0.5f).OnComplete(() => { moveState = MoveState.MOVE_STATE_STOP_DOWN; });
             }
-            audioManager.PlaySE(AudioManager.SE.SE_TITLE, 1, 0.5f);
+            AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
         }
     }
 
@@ -54,7 +53,7 @@ public class SkinManager : MonoBehaviour
         playerColor = colors[0];
         player.color = colors[0];
         skinSupport.SetPlayerColorInfo(playerType, playerColor);
-        audioManager.PlaySE(AudioManager.SE.SE_TITLE, 1, 0.5f);
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
     }
 
     public void SetColorB()
@@ -63,7 +62,7 @@ public class SkinManager : MonoBehaviour
         playerColor = colors[1];
         player.color = colors[1];
         skinSupport.SetPlayerColorInfo(playerType, playerColor);
-        audioManager.PlaySE(AudioManager.SE.SE_TITLE, 1, 0.5f);
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
     }
     public void SetColorC()
     {
@@ -71,7 +70,7 @@ public class SkinManager : MonoBehaviour
         playerColor = colors[2];
         player.color = colors[2];
         skinSupport.SetPlayerColorInfo(playerType, playerColor);
-        audioManager.PlaySE(AudioManager.SE.SE_TITLE, 1, 0.5f);
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
     }
     public void SetColorD()
     {
@@ -79,7 +78,7 @@ public class SkinManager : MonoBehaviour
         playerColor = colors[3];
         player.color = colors[3];
         skinSupport.SetPlayerColorInfo(playerType, playerColor);
-        audioManager.PlaySE(AudioManager.SE.SE_TITLE, 1, 0.5f);
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
     }
 
     public void InitInTitleScene()
@@ -97,10 +96,5 @@ public class SkinManager : MonoBehaviour
     public void SetSkinSupport(SkinSupport skin_support)
     {
         skinSupport = skin_support;
-    }
-
-    public void SetAudioManager(AudioManager audio_manager)
-    {
-        audioManager = audio_manager;
     }
 }

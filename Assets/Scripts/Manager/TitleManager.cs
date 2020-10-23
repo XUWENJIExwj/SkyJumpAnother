@@ -30,9 +30,9 @@ public class TitleManager : CommonManager
     // Start is called before the first frame update
     void Awake()
     {
-        
 
         
+
         //titleBg.sizeDelta= ScreenInfo.bgSizeYC * 100;
 
         //float title_logo_x = canvasScaler.referenceResolution.x * 0.9f;
@@ -93,7 +93,7 @@ public class TitleManager : CommonManager
 
     private void Start()
     {
-        InitUI();
+        AudioManager.PlayBGM(AudioManager.BGM.BGM_TITLE);
     }
 
     private void Update()

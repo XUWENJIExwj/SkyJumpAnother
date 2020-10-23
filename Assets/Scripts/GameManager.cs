@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         playerObjWithFlick.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
 
         // BGMの再生
-        audioManager.PlayBGM(AudioManager.BGM.BGM_GAME);
+        //audioManager.PlayBGM(AudioManager.BGM.BGM_GAME);
 
         canvasManager.SetScorePosition(Screen.width / 2 - 300.0f, Screen.height / 2 * 0.9f);
 
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
                 if (playerObjWithFlick.GetIfGameOver())
                 {
                     fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
-                    audioManager.PlaySE(AudioManager.SE.SE_GAME_OVER, 1, 0.2f);
+                    //audioManager.PlaySE(AudioManager.SE.SE_GAME_OVER, 1, 0.2f);
                 }
                 break;
         }  

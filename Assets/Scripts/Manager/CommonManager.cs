@@ -22,7 +22,8 @@ public class CommonManager : MonoBehaviour
 
     public void GoToNextScene(string next_scene)
     {
-        SceneManager.LoadScene(next_scene);
+        //SceneManager.LoadScene(next_scene);
+
         //if (fade.GetFadeState() == Fade.FadeState.FADE_STATE_NONE)
         //{
         //    

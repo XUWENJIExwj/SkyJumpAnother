@@ -39,7 +39,7 @@ public class RankManger : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         // BGMの再生
-        audioManager.PlayBGM(AudioManager.BGM.BGM_TITLE);
+        //audioManager.PlayBGM(AudioManager.BGM.BGM_TITLE);
 
         rank.LoadRank();
         //rank.LoadRankBinary();
@@ -86,6 +86,6 @@ public class RankManger : MonoBehaviour
     public void GoToTitleScene()
     {
         fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
-        audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
+        //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
     }
 }

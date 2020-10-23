@@ -115,7 +115,7 @@ public class ObjectWithFlick : MonoBehaviour
     public void Push(Vector2 force)
     {
         playerRb.AddForce(force, ForceMode2D.Impulse);
-        audioManager.PlaySE(AudioManager.SE.SE_GAME_PLAYER_JUMP, 1);
+        //AudioManager.PlaySE(AudioManager.SE.SE_GAME_PLAYER_JUMP, 1);
     }
 
     public void ActivateRb()
@@ -228,9 +228,9 @@ public class ObjectWithFlick : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            if(!audioManager.GetIsPlaying(2))
+            //if(!audioManager.GetIsPlaying(2))
             {
-                audioManager.PlaySE(AudioManager.SE.SE_GAME_PLAYER_COLLISION, 2);
+                //audioManager.PlaySE(AudioManager.SE.SE_GAME_PLAYER_COLLISION, 2);
             }
 
             //SetGameOver();

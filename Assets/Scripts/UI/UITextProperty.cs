@@ -11,7 +11,7 @@ public class UITextProperty : UIProperty
 
     private void Start()
     {
-        fontSizeCoefficient = fontDefaultSize / ScreenInfo.ScreenOriginSize.x;
+        fontSizeCoefficient = fontDefaultSize / ScreenInfo.screenOriginSize.x;
     }
 
     // Widthによる拡大縮小
