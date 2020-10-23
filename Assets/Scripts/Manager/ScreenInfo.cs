@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ScreenInfo : MonoBehaviour
 {
@@ -19,8 +18,7 @@ public class ScreenInfo : MonoBehaviour
     // 完成後削除
     bool isExist = false;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         // ScreenInfoの初期化
         screenOriginSize = screenDefaultSize;
@@ -31,6 +29,8 @@ public class ScreenInfo : MonoBehaviour
         bgSizeMatchX = new Vector2(screenSize.x, bgDefaultSize.y * screenCoefficient.x);
         bgSizeMatchY = new Vector2(bgDefaultSize.x * screenCoefficient.y, screenSize.y);
 
+        cameraOrthographicSize = Mathf.Max(screenSize.x, screenSize.y);
+
         // 完成後削除
         if (!isExist)
         {
@@ -38,13 +38,12 @@ public class ScreenInfo : MonoBehaviour
             isExist = true;
         }
 
-        cameraOrthographicSize = Mathf.Max(screenSize.x, screenSize.y);
+
 
         //Debug.Log("Width: " + Screen.width);
         //Debug.Log("Height: " + Screen.height);
 
         // 完成後復元
         //DontDestroyOnLoad(gameObject);
-        //SceneManager.LoadScene("Title");
     }
 }

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject audioManagerPrefab;
     public AudioManager audioManager;
     public GameObject skinSupportPrefab;
-    public SkinSupport skinSupport;
+    public SkinInfo skinSupport;
     public CanvasManager canvasManager;
 
     public GameObject score;
@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(skinSupportPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity).name = "SkinSupport";
         }
-        skinSupport = GameObject.Find("SkinSupport").GetComponent<SkinSupport>();
-        playerObjWithFlick.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
+        skinSupport = GameObject.Find("SkinSupport").GetComponent<SkinInfo>();
+        //playerObjWithFlick.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
 
         // BGMの再生
         //audioManager.PlayBGM(AudioManager.BGM.BGM_GAME);

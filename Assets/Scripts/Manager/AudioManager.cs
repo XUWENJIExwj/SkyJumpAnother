@@ -34,7 +34,10 @@ public class AudioManager : MonoBehaviour
     static private AudioClip[] bgm;
     static private AudioClip[] se;
 
-    void Awake()
+    // 完成後削除
+    bool isExist = false;
+
+    private void Awake()
     {
         audioSource = new AudioSource[audioSourceNum];
 
@@ -46,7 +49,15 @@ public class AudioManager : MonoBehaviour
         bgm = bgmList;
         se = seList;
 
-        DontDestroyOnLoad(gameObject);
+        // 完成後削除
+        if (!isExist)
+        {
+            DontDestroyOnLoad(gameObject);
+            isExist = true;
+        }
+
+        // 完成後復元
+        //DontDestroyOnLoad(gameObject);
     }
 
     static public void PlayBGM(BGM bgm_idx)

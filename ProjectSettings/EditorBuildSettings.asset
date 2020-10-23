@@ -5,8 +5,8 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/InitScreenInfo.unity
+  - enabled: 1
+    path: Assets/Scenes/InitStaticInfo.unity
     guid: a269cb9640550a845b81fdde0eab7d95
   - enabled: 1
     path: Assets/Scenes/Title.unity
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Result.unity
     guid: 9b14e3afb7abecd468997bab4fdb0ac9
-  - enabled: 0
-    path: Assets/Scenes/Rank.unity
+  - enabled: 1
+    path: Assets/Scenes/Ranking.unity
     guid: b777a524fca53d04993f2bb51f7772c2
   m_configObjects: {}
