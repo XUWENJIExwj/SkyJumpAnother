@@ -138,8 +138,8 @@ public class ObjectCreator : MonoBehaviour
 
         bgInNextStep = false;
 
-        score.scoreIndex = scoreIndex;
-        score.scoreDigit = scoreDigit;
+        //score.scoreIndex = scoreIndex;
+        //score.scoreDigit = scoreDigit;
     }
 
     // Update is called once per frame

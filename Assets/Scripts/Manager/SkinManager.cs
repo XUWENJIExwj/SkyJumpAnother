@@ -22,7 +22,7 @@ public class SkinManager : MonoBehaviour
     }
 
     [SerializeField] private MoveState moveState = MoveState.MOVE_STATE_STOP_DOWN;
-    [SerializeField] [Range(0.0f, 1.0f)] private float iconSpaceCoefficient = 0.0f;
+    [SerializeField] [Range(-2.0f, 2.0f)] private float iconSpaceCoefficient = 0.0f;
     [SerializeField] [Range(0.0f, 1.0f)] private float moveTime = 0.0f;
 
     private void Start()
@@ -86,12 +86,11 @@ public class SkinManager : MonoBehaviour
         {
             moveState = MoveState.MOVE_STATE_MOVING_UP;
 
-            float icon_space = ScreenInfo.screenSize.y * iconSpaceCoefficient;
+            float icon_space = Screen.height * iconSpaceCoefficient;
 
             for (int i = 1; i < skinIcon.Length; i++)
             {
-                float pos_y = skinIcon[0].position.y + i * icon_space;
-                skinIcon[i].DOMoveY(pos_y, moveTime).OnComplete(() => { moveState = MoveState.MOVE_STATE_STOP_UP; });
+                skinIcon[i].DOAnchorPosY(i * icon_space, moveTime).OnComplete(() => { moveState = MoveState.MOVE_STATE_STOP_UP; });
             }
 
             AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);

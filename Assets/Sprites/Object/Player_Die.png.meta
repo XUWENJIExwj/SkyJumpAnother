@@ -5,6 +5,24 @@ TextureImporter:
   - first:
       213: 4653529246697521632
     second: PlayerDie_0
+  - first:
+      213: -8311989477641001193
+    second: UI_Transparent
+  - first:
+      213: 2405681977902352581
+    second: Player_Die
+  - first:
+      213: 1946927465861060226
+    second: Player_Die_2
+  - first:
+      213: 3584226132089610693
+    second: Player_Die_3
+  - first:
+      213: -3826548820387394334
+    second: Player_Die_4
+  - first:
+      213: -5731209247148237071
+    second: UI_Transparent
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -113,7 +131,28 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerDie_0
+      name: UI_Transparent
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 764
+        width: 300
+        height: 370
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe9b421e87a670b0800000000000000
+      internalID: -5731209247148237071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Die
       rect:
         serializedVersion: 2
         x: 120
@@ -121,14 +160,14 @@ TextureImporter:
         width: 400
         height: 300
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e10c45c138a49040800000000000000
-      internalID: 4653529246697521632
+      spriteID: 5c8cd675303b26120800000000000000
+      internalID: 2405681977902352581
       vertices: []
       indices: 
       edges: []

@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    public GameObject player;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float highestPosY;
 
-    float highestPosY;
-
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         highestPosY = transform.position.y;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void UpdateCamera(float player_pos_y)
     {
-        if (highestPosY < player.transform.position.y)
+        if (highestPosY < player_pos_y)
         {
-            highestPosY = player.transform.position.y;
+            highestPosY = player_pos_y;
         }
 
         transform.position = new Vector3(0.0f, highestPosY, transform.position.z);

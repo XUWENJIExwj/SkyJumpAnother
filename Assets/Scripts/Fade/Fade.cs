@@ -11,7 +11,9 @@ public abstract class Fade : MonoBehaviour
     [SerializeField] protected float fadeTime = 1.0f;
     [SerializeField] protected RectTransform uiPartMoveUp = null;
     [SerializeField] protected RectTransform uiPartMoveDown = null;
-    [SerializeField] [Range(0.0f, 20.0f)] protected float uiPartsMoveY = 0.0f;
+    [SerializeField] protected float uiPartsMoveY = 0.0f;
+    [SerializeField] protected float uiPartsMoveYDefault = 20.0f;
+    [SerializeField] [Range(0.0f, 10.0f)] protected float uiPartsMoveYCoefficient = 1.0f;
 
     public enum FadeState
     {
@@ -22,6 +24,11 @@ public abstract class Fade : MonoBehaviour
     }
 
     [SerializeField] protected FadeState fadeState;
+
+    private void Awake()
+    {
+        uiPartsMoveY = uiPartsMoveYDefault / ScreenInfo.screenOriginSize.y * Screen.height * uiPartsMoveYCoefficient;
+    }
 
     //public abstract void FadeIn();
 

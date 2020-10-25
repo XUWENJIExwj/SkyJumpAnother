@@ -25,8 +25,6 @@ public class TitleManager : CommonManager
         DisplayBestScore();
         AudioManager.PlayBGM(AudioManager.BGM.BGM_TITLE);
         base.Start();
-        //fade.SetFadeState(Fade.FadeState.FADE_STATE_IN);
-        //fade.FadeIn();
     }
 
     public void DisplayBestScore()

@@ -70,11 +70,11 @@ public class BlockNormal : MonoBehaviour
         if (!hasScore)
         {
             hasScore = true;
-            score.SetScore(
-                transform.position.y +
-                Camera.main.orthographicSize + // Cameraによる座標調整
-                boxCollider.size.y / 2 * transform.localScale.y // blockの中心から最高点の位置
-                );
+            //score.SetScore(
+            //    transform.position.y +
+            //    Camera.main.orthographicSize + // Cameraによる座標調整
+            //    boxCollider.size.y / 2 * transform.localScale.y // blockの中心から最高点の位置
+            //    );
         }
     }
 

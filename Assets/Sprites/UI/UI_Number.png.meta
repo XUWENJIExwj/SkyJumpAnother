@@ -4,34 +4,34 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -4677205242863488633
-    second: number_0
+    second: UI_Number_0
   - first:
       213: 859809963154828141
-    second: number_1
+    second: UI_Number_1
   - first:
       213: -8750563325967366506
-    second: number_2
+    second: UI_Number_2
   - first:
       213: 3003832276856978067
-    second: number_3
+    second: UI_Number_3
   - first:
       213: 7411717357407056019
-    second: number_4
+    second: UI_Number_4
   - first:
       213: 5893147983358093460
-    second: number_5
+    second: UI_Number_5
   - first:
       213: 9153319047519127056
-    second: number_6
+    second: UI_Number_6
   - first:
       213: -290087458851718232
-    second: number_7
+    second: UI_Number_7
   - first:
       213: -2095093859085678079
-    second: number_8
+    second: UI_Number_8
   - first:
       213: 1529409630825075727
-    second: number_9
+    second: UI_Number_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -140,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: number_0
+      name: UI_Number_0
       rect:
         serializedVersion: 2
         x: 0
@@ -161,7 +161,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_1
+      name: UI_Number_1
       rect:
         serializedVersion: 2
         x: 330
@@ -182,7 +182,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_2
+      name: UI_Number_2
       rect:
         serializedVersion: 2
         x: 685
@@ -203,7 +203,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_3
+      name: UI_Number_3
       rect:
         serializedVersion: 2
         x: 1030
@@ -224,7 +224,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_4
+      name: UI_Number_4
       rect:
         serializedVersion: 2
         x: 1375
@@ -245,7 +245,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_5
+      name: UI_Number_5
       rect:
         serializedVersion: 2
         x: 1717
@@ -266,7 +266,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_6
+      name: UI_Number_6
       rect:
         serializedVersion: 2
         x: 2055
@@ -287,7 +287,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_7
+      name: UI_Number_7
       rect:
         serializedVersion: 2
         x: 2400
@@ -308,7 +308,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_8
+      name: UI_Number_8
       rect:
         serializedVersion: 2
         x: 2743
@@ -329,7 +329,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: number_9
+      name: UI_Number_9
       rect:
         serializedVersion: 2
         x: 3084

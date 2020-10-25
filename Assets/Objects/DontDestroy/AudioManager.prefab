@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSourceNum: 3
-  bgmList:
+  Bgm:
   - {fileID: 8300000, guid: a644bfc42438cc0468bd3650b3d36508, type: 3}
   - {fileID: 8300000, guid: 59812a8de9c226046bee60dde557b439, type: 3}
   - {fileID: 8300000, guid: d69ba6b38900f334abe96341d1c9187f, type: 3}
-  seList:
+  Se:
   - {fileID: 8300000, guid: 883c7d25ed5865a45838a59a0bf95731, type: 3}
   - {fileID: 8300000, guid: 59236b4a03d1e5744824a813ddf3e584, type: 3}
   - {fileID: 8300000, guid: 98d36c08add481a4eab428f52789ab01, type: 3}

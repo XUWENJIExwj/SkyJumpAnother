@@ -5,38 +5,47 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public int score;
-    public int scoreIndex;
-    public int scoreDigit;
-    public int ScoreMax;
+    [SerializeField] private int ScoreIndex = 0;
+    [SerializeField] private int ScoreDigit = 5;
+    [SerializeField] private int ScoreMax = 99999;
+    [SerializeField] private Sprite[] Sprites = null;
+    [SerializeField] private Image[] Images = null;
 
-    public Sprite[] sprites;
-    private Image[] images;
+    static public int score { get; private set; }
+    static public int scoreIndex { get; private set; }
+    static public int scoreDigit { get; private set; }
+    static public int scoreMax { get; private set; }
+    static private Sprite[] sprites { get; set; }
+    static private Image[] images { get; set; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         score = 0;
+        scoreIndex = ScoreIndex;
+        scoreDigit = ScoreDigit;
+        scoreMax = ScoreMax;
 
-        images = GetComponentsInChildren<Image>();
-       
+        sprites = Sprites;
+        images = Images;
+
         images[0].sprite = sprites[0];
 
         for (int i = 1; i < images.Length; i++)
         {
-            images[i].sprite = sprites[sprites.Length - 1];
+            //images[i].sprite = sprites[sprites.Length - 1];
+            images[i].sprite = sprites[0];
         }
     }
 
-    public void SetScore(float s)
+    static public void SetScore(float s)
     {
         s *= scoreIndex;
 
         if (score < (int)s)
         {
-            if ((int)s >= ScoreMax)
+            if ((int)s >= scoreMax)
             {
-                score = ScoreMax;
+                score = scoreMax;
             }
             else
             {
@@ -47,7 +56,7 @@ public class Score : MonoBehaviour
         }
     }
 
-    private void ScoreDigitCheck()
+    static private void ScoreDigitCheck()
     {
         bool isDisplay = false;
         int workscore = score;

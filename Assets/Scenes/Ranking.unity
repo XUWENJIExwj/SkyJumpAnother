@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -267,10 +267,17 @@ MonoBehaviour:
   uiSizeParentCoefficient: 0.55
   uiSizeChildrenCoefficient:
   - 1
-  uiPosXCoefficient: 0
-  uiPosYCoefficient: -0.7
-  sizeCoefficient:
-  - {x: 3.5338347, y: 0.2829787}
+  uiPosXParentCoefficient: 0
+  uiPosXChildrenCoefficient:
+  - 1
+  uiPosYParentCoefficient: -0.75
+  uiPosYChildrenCoefficient:
+  - 1
+  sizeCoefficient: []
+  positionMode: 0
+  orderMode: 2
+  orderReference: 2
+  spaceCoefficient: 0
 --- !u!1 &62847712
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,9 +949,19 @@ MonoBehaviour:
   uiSizeChildrenCoefficient:
   - 1
   - 1
-  uiPosXCoefficient: 0
-  uiPosYCoefficient: 0
+  uiPosXParentCoefficient: 0
+  uiPosXChildrenCoefficient:
+  - 1
+  - 0
+  uiPosYParentCoefficient: 0
+  uiPosYChildrenCoefficient:
+  - 1
+  - 0
   sizeCoefficient: []
+  positionMode: 0
+  orderMode: 2
+  orderReference: 2
+  spaceCoefficient: 0
 --- !u!114 &555966815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,7 +978,9 @@ MonoBehaviour:
   fadeTime: 1
   uiPartMoveUp: {fileID: 1227142807}
   uiPartMoveDown: {fileID: 528132205}
-  uiPartsMoveY: 20
+  uiPartsMoveY: 0
+  uiPartsMoveYDefault: 20
+  uiPartsMoveYCoefficient: 1
   fadeState: 0
 --- !u!1 &668980962
 GameObject:
@@ -1445,9 +1464,27 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  uiPosXCoefficient: 0.6
-  uiPosYCoefficient: 0.4
+  uiPosXParentCoefficient: 0.6
+  uiPosXChildrenCoefficient:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  uiPosYParentCoefficient: 0.4
+  uiPosYChildrenCoefficient:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   sizeCoefficient: []
+  positionMode: 1
+  orderMode: 1
+  orderReference: 0
+  spaceCoefficient: -0.085
   text:
   - {fileID: 887418203}
   - {fileID: 2117883742}
@@ -1455,7 +1492,7 @@ MonoBehaviour:
   - {fileID: 2138391742}
   - {fileID: 1973931402}
   - {fileID: 668980965}
-  fontDefaultSize: 48
+  fontSizeDefault: 48
   fontSizeParentCoefficient: 0
   fontSizeChildrenCoefficient:
   - 1
@@ -1464,7 +1501,6 @@ MonoBehaviour:
   - 0.9
   - 0.9
   - 0.9
-  textSpaceCoefficient: 0.08
 --- !u!1 &898477440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,9 +1556,17 @@ MonoBehaviour:
   uiSizeParentCoefficient: 1
   uiSizeChildrenCoefficient:
   - 1
-  uiPosXCoefficient: 0
-  uiPosYCoefficient: 0
+  uiPosXParentCoefficient: 0
+  uiPosXChildrenCoefficient:
+  - 1
+  uiPosYParentCoefficient: 0
+  uiPosYChildrenCoefficient:
+  - 1
   sizeCoefficient: []
+  positionMode: 0
+  orderMode: 2
+  orderReference: 2
+  spaceCoefficient: 0
 --- !u!114 &898477443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,9 +1730,27 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  uiPosXCoefficient: 1.5
-  uiPosYCoefficient: 0.4
+  uiPosXParentCoefficient: 1.5
+  uiPosXChildrenCoefficient:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  uiPosYParentCoefficient: 0.4
+  uiPosYChildrenCoefficient:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   sizeCoefficient: []
+  positionMode: 1
+  orderMode: 1
+  orderReference: 0
+  spaceCoefficient: -0.085
   text:
   - {fileID: 1072866549}
   - {fileID: 1149851891}
@@ -1696,7 +1758,7 @@ MonoBehaviour:
   - {fileID: 62847715}
   - {fileID: 87443735}
   - {fileID: 1547197631}
-  fontDefaultSize: 48
+  fontSizeDefault: 48
   fontSizeParentCoefficient: 0
   fontSizeChildrenCoefficient:
   - 1
@@ -1705,7 +1767,6 @@ MonoBehaviour:
   - 0.9
   - 0.9
   - 0.9
-  textSpaceCoefficient: 0.08
 --- !u!1 &1104808572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,9 +2121,27 @@ MonoBehaviour:
   - 0.9
   - 0.9
   - 0.9
-  uiPosXCoefficient: -0.72
-  uiPosYCoefficient: 0.4
+  uiPosXParentCoefficient: -0.72
+  uiPosXChildrenCoefficient:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  uiPosYParentCoefficient: 0.4
+  uiPosYChildrenCoefficient:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   sizeCoefficient: []
+  positionMode: 1
+  orderMode: 1
+  orderReference: 0
+  spaceCoefficient: -0.085
   text:
   - {fileID: 1320435941}
   - {fileID: 716054384}
@@ -2070,7 +2149,7 @@ MonoBehaviour:
   - {fileID: 368490069}
   - {fileID: 1505614364}
   - {fileID: 1339062199}
-  fontDefaultSize: 48
+  fontSizeDefault: 48
   fontSizeParentCoefficient: 0
   fontSizeChildrenCoefficient:
   - 1
@@ -2079,7 +2158,6 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  textSpaceCoefficient: 0.08
 --- !u!1001 &1324130639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2622,16 +2700,23 @@ MonoBehaviour:
   uiSizeParentCoefficient: 1
   uiSizeChildrenCoefficient:
   - 1
-  uiPosXCoefficient: 0
-  uiPosYCoefficient: 0.75
+  uiPosXParentCoefficient: 0
+  uiPosXChildrenCoefficient:
+  - 1
+  uiPosYParentCoefficient: 0.75
+  uiPosYChildrenCoefficient:
+  - 1
   sizeCoefficient: []
+  positionMode: 0
+  orderMode: 2
+  orderReference: 2
+  spaceCoefficient: 0
   text:
   - {fileID: 1700540361}
-  fontDefaultSize: 116
+  fontSizeDefault: 116
   fontSizeParentCoefficient: 0
   fontSizeChildrenCoefficient:
   - 1
-  textSpaceCoefficient: 0
 --- !u!1 &1808028156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2925,13 +3010,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 452756415}
   fade: {fileID: 555966815}
-  uiPartsXC:
+  uiPartsMatchX:
   - {fileID: 1700540363}
   - {fileID: 1320435943}
   - {fileID: 887418205}
   - {fileID: 1072866551}
   - {fileID: 43806806}
-  uiPartsYC:
+  uiPartsMatchY:
   - {fileID: 898477442}
   - {fileID: 555966813}
   rankText:

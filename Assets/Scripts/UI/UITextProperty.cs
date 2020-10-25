@@ -6,43 +6,30 @@ using UnityEngine.UI;
 public class UITextProperty : UIProperty
 {
     [SerializeField] private Text[] text = null;
-    [SerializeField] private int fontDefaultSize = 56;
+    [SerializeField] private int fontSizeDefault = 56;
     [SerializeField] private float fontSizeParentCoefficient = 0.0f;
     [SerializeField] [Range(0.0f, 1.0f)] private float[] fontSizeChildrenCoefficient = null;
-    [SerializeField] [Range(0.0f, 1.0f)] private float textSpaceCoefficient = 0.0f;
 
     protected override void Awake()
     {
         base.Awake();
-        fontSizeParentCoefficient = fontDefaultSize / ScreenInfo.screenOriginSize.x;
+        fontSizeParentCoefficient = fontSizeDefault / ScreenInfo.screenOriginSize.x;
     }
 
     // Widthによる拡大縮小
-    public override void SetUISizeXC()
+    public override void SetUISizeMatchX()
     {
-        float size_x = Screen.width * uiSizeParentCoefficient;
-
-        for (int i = 0; i < rectTransform.Length; i++)
-        {
-            rectTransform[i].sizeDelta = new Vector2(size_x, size_x * sizeCoefficient[i].y) * uiSizeChildrenCoefficient[i];
-        }
+        base.SetUISizeMatchX();
 
         SetFontSize();
-        SetChildrenPos();
     }
 
     // Heightによる拡大縮小
-    public override void SetUISizeYC()
+    public override void SetUISizeMatchY()
     {
-        float size_y = Screen.height * uiSizeParentCoefficient;
+        base.SetUISizeMatchY();
 
-        for (int i = 0; i < rectTransform.Length; i++)
-        {
-            rectTransform[i].sizeDelta = new Vector2(size_y * sizeCoefficient[i].x, size_y) * uiSizeChildrenCoefficient[i];
-        }
-
-        SetFontSize();
-        SetChildrenPos();
+        SetFontSize(); 
     }
 
     private void SetFontSize()
@@ -50,17 +37,6 @@ public class UITextProperty : UIProperty
         for (int i = 0; i < text.Length; i++)
         {
             text[i].fontSize = (int)Mathf.Ceil(fontSizeParentCoefficient * rectTransform[i].sizeDelta.x * fontSizeChildrenCoefficient[i]);
-        }
-    }
-
-    private void SetChildrenPos()
-    {
-        float text_space = ScreenInfo.screenSize.y * textSpaceCoefficient;
-
-        for (int i = 1; i < rectTransform.Length; i++)
-        {
-            float pos_y = rectTransform[0].position.y - i * text_space;
-            rectTransform[i].position = new Vector3(rectTransform[i].position.x, pos_y, rectTransform[i].position.z);
         }
     }
 }

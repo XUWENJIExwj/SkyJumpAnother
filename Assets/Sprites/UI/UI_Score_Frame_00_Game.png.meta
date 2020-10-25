@@ -4,13 +4,37 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 7501387830980884940
-    second: frame_left
+    second: UI_Score_Frame_00_Left
   - first:
       213: -1292133977623532453
-    second: frame_center
+    second: UI_Score_Frame_00_Center
   - first:
       213: 1067268738093248773
-    second: frame_right
+    second: UI_Score_Frame_00_Right_01
+  - first:
+      213: -5302754785428160279
+    second: UI_Score_Frame_00_Left
+  - first:
+      213: -443594011401562392
+    second: UI_Score_Frame_00_Center
+  - first:
+      213: 8724851023660895852
+    second: UI_Score_Frame_00_Right_01
+  - first:
+      213: -5302754785428160279
+    second: UI_Score_Frame_00_Left
+  - first:
+      213: -443594011401562392
+    second: UI_Score_Frame_00_Center
+  - first:
+      213: 8724851023660895852
+    second: Z_UI_Score_Frame_00_Center_00
+  - first:
+      213: -2562523303938975486
+    second: UI_Score_Frame_00_Right_00
+  - first:
+      213: 8595202723433841173
+    second: UI_Score_Frame_00_Right_01
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -119,12 +143,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: frame_left
+      name: UI_Score_Frame_00_Left
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 180
+        width: 644.2
         height: 1220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -133,19 +157,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc9bd0cfc784a1860800000000000000
-      internalID: 7501387830980884940
+      spriteID: 9e04d8b2e94d866b0800000000000000
+      internalID: -5302754785428160279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frame_center
+      name: UI_Score_Frame_00_Center
       rect:
         serializedVersion: 2
-        x: 180
+        x: 644
         y: 0
-        width: 2230
+        width: 644.2
         height: 1220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -154,19 +178,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5c698d4efa611ee0800000000000000
-      internalID: -1292133977623532453
+      spriteID: 8e65bedc89908d9f0800000000000000
+      internalID: -443594011401562392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frame_right
+      name: Z_UI_Score_Frame_00_Center_00
       rect:
         serializedVersion: 2
-        x: 2410
+        x: 1288
         y: 0
-        width: 811
+        width: 644.2
         height: 1220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -175,8 +199,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5017ded3343bfce00800000000000000
-      internalID: 1067268738093248773
+      spriteID: c6ec28f97c5e41970800000000000000
+      internalID: 8724851023660895852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Score_Frame_00_Right_00
+      rect:
+        serializedVersion: 2
+        x: 1932
+        y: 0
+        width: 644.2
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2099e04c1a6107cd0800000000000000
+      internalID: -2562523303938975486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Score_Frame_00_Right_01
+      rect:
+        serializedVersion: 2
+        x: 2577
+        y: 0
+        width: 644
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5128ebe665b484770800000000000000
+      internalID: 8595202723433841173
       vertices: []
       indices: 
       edges: []

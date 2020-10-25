@@ -79,12 +79,12 @@ public class ResultManager : MonoBehaviour
             scoreOther.gameObject.SetActive(true);
             score = scoreOther;
             score.tag = "Score";
-            score.score = 100;
+            //score.score = 100;
         }
 
         score.transform.SetParent(scoreDisplay.transform);
 
-        scoreBest.scoreIndex = score.scoreIndex;
+        //scoreBest.scoreIndex = score.scoreIndex;
 
         canvasManager.SetScorePosition(-40.0f, frame.anchoredPosition.y - 15.0f);
         canvasManager.SetScoreSize(0.65f, 0.65f);

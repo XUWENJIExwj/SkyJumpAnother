@@ -28,8 +28,9 @@ public class AudioManager : MonoBehaviour
     }
 
     [SerializeField] private int audioSourceNum = 0;
-    [SerializeField] private AudioClip[] bgmList = null;
-    [SerializeField] private AudioClip[] seList = null;
+    [SerializeField] private AudioClip[] Bgm = null;
+    [SerializeField] private AudioClip[] Se = null;
+
     static private AudioSource[] audioSource;
     static private AudioClip[] bgm;
     static private AudioClip[] se;
@@ -46,8 +47,8 @@ public class AudioManager : MonoBehaviour
             audioSource[i] = gameObject.AddComponent<AudioSource>();
         }
 
-        bgm = bgmList;
-        se = seList;
+        bgm = Bgm;
+        se = Se;
 
         // 完成後削除
         if (!isExist)

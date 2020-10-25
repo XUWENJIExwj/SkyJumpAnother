@@ -6,8 +6,8 @@ public abstract class CommonManager : MonoBehaviour
 {
     [SerializeField] protected Camera cam = null;
     [SerializeField] protected Fade fade;
-    [SerializeField] protected UIProperty[] uiPartsXC = null; // Widthによる拡大縮小
-    [SerializeField] protected UIProperty[] uiPartsYC = null; // Heightによる拡大縮小
+    [SerializeField] protected UIProperty[] uiPartsMatchX = null; // Widthによる拡大縮小
+    [SerializeField] protected UIProperty[] uiPartsMatchY = null; // Heightによる拡大縮小
 
     protected string nextScene;
 
@@ -72,20 +72,20 @@ public abstract class CommonManager : MonoBehaviour
 
     public void InitUI()
     {
-        if(uiPartsXC != null)
+        if(uiPartsMatchX != null)
         {
-            foreach (UIProperty ui_property in uiPartsXC)
+            foreach (UIProperty ui_property in uiPartsMatchX)
             {
-                ui_property.SetUISizeXC();
+                ui_property.SetUISizeMatchX();
                 ui_property.SetUIPosition();
             }
         }
 
-        if (uiPartsYC != null)
+        if (uiPartsMatchY != null)
         {
-            foreach (UIProperty ui_property in uiPartsYC)
+            foreach (UIProperty ui_property in uiPartsMatchY)
             {
-                ui_property.SetUISizeYC();
+                ui_property.SetUISizeMatchY();
                 ui_property.SetUIPosition();
             }
         }   

@@ -13,6 +13,7 @@ public class ScreenInfo : MonoBehaviour
     static public Vector2 screenCoefficient { get; private set; } // 拡大用の係数
     static public Vector2 bgSizeMatchX { get; private set; } // Widthによる拡大縮小
     static public Vector2 bgSizeMatchY { get; private set; } // Heightによる拡大縮小
+    static public float bgPosYDeviation { get; private set; }
     static public float cameraOrthographicSize { get; private set; }
 
     // 完成後削除
@@ -29,7 +30,9 @@ public class ScreenInfo : MonoBehaviour
         bgSizeMatchX = new Vector2(screenSize.x, bgDefaultSize.y * screenCoefficient.x);
         bgSizeMatchY = new Vector2(bgDefaultSize.x * screenCoefficient.y, screenSize.y);
 
-        cameraOrthographicSize = Mathf.Max(screenSize.x, screenSize.y);
+        bgPosYDeviation = screenHalfSize.y - bgSizeMatchX.y / 2;
+
+        cameraOrthographicSize = Mathf.Max(screenHalfSize.x, screenHalfSize.y);
 
         // 完成後削除
         if (!isExist)
