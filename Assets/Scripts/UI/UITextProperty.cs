@@ -13,7 +13,7 @@ public class UITextProperty : UIProperty
     protected override void Awake()
     {
         base.Awake();
-        fontSizeParentCoefficient = fontSizeDefault / ScreenInfo.screenOriginSize.x;
+        fontSizeParentCoefficient = fontSizeDefault / ScreenInfo.screenDefaultSize.x;
     }
 
     // Widthによる拡大縮小

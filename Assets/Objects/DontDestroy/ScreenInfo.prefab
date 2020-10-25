@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4046e771c4713fd469b7083dd480414e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenDefaultSize: {x: 640, y: 1136}
-  bgDefaultSize: {x: 6.4, y: 11.36}
+  ScreenDefaultSize: {x: 640, y: 1136}
+  BgDefaultSize: {x: 6.4, y: 11.36}
+  BgHeightSpace: 0
+  bgHeightSpaceCoefficient: 0.05

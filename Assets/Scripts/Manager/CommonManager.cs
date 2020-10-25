@@ -8,6 +8,7 @@ public abstract class CommonManager : MonoBehaviour
     [SerializeField] protected Fade fade;
     [SerializeField] protected UIProperty[] uiPartsMatchX = null; // Widthによる拡大縮小
     [SerializeField] protected UIProperty[] uiPartsMatchY = null; // Heightによる拡大縮小
+    [SerializeField] protected ObjectProperty[] objectProperties = null;
 
     protected string nextScene;
 
@@ -44,7 +45,7 @@ public abstract class CommonManager : MonoBehaviour
         // 完成後削除
         InitUI();
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             PlayerPrefs.DeleteAll();
         }

@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : CommonManager
 {
-    [SerializeField] private ObjectWithFlick player;
-    [SerializeField] private CameraBehaviour cameraBehaviour;
+    [SerializeField] private CameraBehaviour cameraBehaviour = null;
+    [SerializeField] private ObjectWithFlick player = null;
+    [SerializeField] private Trajectory trajectory = null;
 
     [SerializeField] private BGBehaviour[] bgBehaviours = null;
+
+    static public int bgNum { get; private set; }
+
+    [SerializeField] private int oldStep = 0;
+    [SerializeField] private int step = 0;
 
     //public ObjectCreator objectCreator;
     //public CanvasManager canvasManager;
@@ -18,15 +24,12 @@ public class GameManager : CommonManager
 
     //void Awake()
     //{
-        //playerObjWithFlick.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
+    //playerObjWithFlick.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
 
-        // BGMの再生
-        //audioManager.PlayBGM(AudioManager.BGM.BGM_GAME);
+    //canvasManager.SetScorePosition(Screen.width / 2 - 300.0f, Screen.height / 2 * 0.9f);
 
-        //canvasManager.SetScorePosition(Screen.width / 2 - 300.0f, Screen.height / 2 * 0.9f);
-
-        //scoreFrame.transform.localPosition = score.transform.localPosition;
-        //scoreFrame.transform.localScale = score.transform.localScale;
+    //scoreFrame.transform.localPosition = score.transform.localPosition;
+    //scoreFrame.transform.localScale = score.transform.localScale;
 
     //}
 
@@ -46,6 +49,8 @@ public class GameManager : CommonManager
         {
             bgBehaviours[i].InitBg(i);
         }
+
+        bgNum = bgBehaviours.Length;
     }
 
     public override void GoToNextScene()
@@ -55,12 +60,40 @@ public class GameManager : CommonManager
 
     public override void UpdateThisScene()
     {
-        //cameraBehaviour.UpdateCamera(player.gameObject.transform.position.y);
+        trajectory.UpdateDotsNumber(step, oldStep);
 
-        //if(player.GetIfGameOver())
-        //{
-        //    fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
-        //    AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A ,AudioManager.SE.SE_GAME_OVER, 0.2f);
-        //}
+        player.UpdatePlayer();
+
+        UpdateStep();
+
+        for (int i = 0; i < bgBehaviours.Length; i++)
+        {
+            bgBehaviours[i].UpdateBg();
+        }
+
+        cameraBehaviour.UpdateCamera(player.gameObject.transform.position.y);
+
+        if (player.GetIfGameOver())
+        {
+            SetGameOver();
+        }
+    }
+
+    public void UpdateStep()
+    {
+        // oldStepの記録
+        oldStep = step;
+
+        // 次のstepに入るかをチェック
+        if (ScreenInfo.bgSizeMatchX.y * step - ScreenInfo.bgPosYDeviationMatchX < cam.transform.position.y)
+        {
+            step++;
+        }
+    }
+
+    public void SetGameOver()
+    {
+        fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_GAME_OVER, 0.2f);
     }
 }

@@ -13,8 +13,8 @@ public class UIParticleProperty : UIProperty
     protected override void Awake()
     {
         base.Awake();
-        particleSizeParentCoefficient = particleSizeDefault / ScreenInfo.screenOriginSize.x;
-        particleSpeedParentCoefficient = particleSpeedDefault / ScreenInfo.screenOriginSize.x;
+        particleSizeParentCoefficient = particleSizeDefault / ScreenInfo.screenDefaultSize.x;
+        particleSpeedParentCoefficient = particleSpeedDefault / ScreenInfo.screenDefaultSize.x;
     }
 
     // Widthによる拡大縮小

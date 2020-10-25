@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class Trajectory : MonoBehaviour
 {
-    //private
-    [SerializeField] int dotsNumber = 0;
-    [SerializeField] GameObject dotsParent = null;
-    [SerializeField] GameObject dotPrefab = null;
-    [SerializeField] float dotSpacing = 0.0f;
-    [SerializeField] [Range(0.01f, 0.3f)] float dotMinScale = 0.0f;
-    [SerializeField] [Range(0.3f, 1f)] float dotMaxScale = 0.0f;
+    [SerializeField] private int dotsNumber = 0;
+    [SerializeField] private int dotsNumberMin = 0;
+    [SerializeField] private int dotsNumberMax = 0;
+    [SerializeField] private int stepDotsIndex = 1;
+    [SerializeField] private GameObject dotsParent = null;
+    [SerializeField] private GameObject dotPrefab = null;
+    [SerializeField] private float dotSpacing = 0.0f;
+    [SerializeField] [Range(0.01f, 0.3f)] private float dotMinScale = 0.0f;
+    [SerializeField] [Range(0.3f, 1f)] private float dotMaxScale = 0.0f;
 
     [SerializeField] Transform[] dotsList;
 
-    Vector2 pos; //dot pos
-    float timeStamp;
+    private Vector2 pos; //dot pos
+    private float timeStamp;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        dotsNumber = dotsNumberMax;
+
         // hide trajectory in the start
         Hide();
         // prepare dots
         PrepareDots();
     }
 
-    void PrepareDots()
+    private void PrepareDots()
     {
         dotsList = new Transform[dotsNumber];
         //Debug.Log(dotsNumber);
@@ -51,8 +54,8 @@ public class Trajectory : MonoBehaviour
         timeStamp = dotSpacing;
         for (int i = 0; i < dotsNumber; i++)
         {
-            pos.x = (ballPos.x + forceApplied.x * timeStamp);
-            pos.y = (ballPos.y + forceApplied.y * timeStamp) - (Physics2D.gravity.magnitude * timeStamp * timeStamp) / 2f;
+            pos.x = ballPos.x + forceApplied.x * timeStamp;
+            pos.y = ballPos.y + forceApplied.y * timeStamp - Physics2D.gravity.magnitude * timeStamp * timeStamp / 2.0f;
 
             //you can simlify this 2 lines at the top by:
             //pos = (ballPos+force*time)-((-Physics2D.gravity*time*time)/2f);
@@ -79,13 +82,16 @@ public class Trajectory : MonoBehaviour
         return dotsParent.activeSelf;
     }
 
-    public void SetDotsNumber(int n)
+    public void UpdateDotsNumber(int step, int old_step)
     {
-        dotsNumber = n;
-
-        if(dotsList.Length > dotsNumber)
+        if (step != old_step && step % stepDotsIndex == 0 && dotsNumber > dotsNumberMin)
         {
-            Destroy(dotsList[dotsNumber].gameObject);
+            dotsNumber = dotsNumberMax - step / stepDotsIndex;
+
+            if (dotsList.Length > dotsNumber)
+            {
+                Destroy(dotsList[dotsNumber].gameObject);
+            }
         }
     }
 }

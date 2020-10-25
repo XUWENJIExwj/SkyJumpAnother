@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class ObjectWithFlick : MonoBehaviour
 {
-    public float screenWidth;
-    public float halfScreenWidth;
-    public float screenHeight;
-    public float halfScreenHeight;
-    public float halfSize;
-    public float posLeft;
-    public float posRight;
-
-    [HideInInspector] public Rigidbody2D playerRb;
-    [HideInInspector] public Collider2D playerCollider;
-
-    public AudioManager audioManager;
-
-    private float oldPosY;
+    [SerializeField] private Camera cam = null;
+    [SerializeField] private ObjectProperty objectProperty = null;
+    [SerializeField] private Rigidbody2D playerRb = null;
+    [SerializeField] [Range(0.0f, 1.0f)] private float startPosYCoefficient = 0.0f;
 
     [HideInInspector] public Vector3 pos { get { return transform.position; } }
 
@@ -29,93 +19,57 @@ public class ObjectWithFlick : MonoBehaviour
         PLAYER_STATE_JUMP_DOWN
     }
 
-    public PlayerState oldPlayerState;
-    public PlayerState playerState;
-    private SpriteAnimation playerAnimation;
+    [SerializeField] private PlayerState playerOldState = PlayerState.PLAYER_STATE_IDLE;
+    [SerializeField] private PlayerState playerState = PlayerState.PLAYER_STATE_IDLE;
+    [SerializeField] private SpriteAnimation playerAnimation = null;
 
-    public bool isRight;
+    [SerializeField] private float oldPosY = 0.0f;
+    [SerializeField] private bool isRight = true;
+    [SerializeField] private bool isOnBlock = false;
+    [SerializeField] private bool isGameOver = false;
 
-    public bool isOnBlock;
-
-    private bool isGameOver;
-
-    void Awake()
-    {
-        screenWidth = (float)Screen.width / 100;
-        halfScreenWidth = screenWidth / 2;
-        screenHeight = (float)Screen.height / 100;
-        halfScreenHeight = screenHeight / 2;
-
-        RectTransform rect = GetComponent<RectTransform>();
-        halfSize = rect.sizeDelta.x * rect.localScale.x / 2;
-
-        playerRb = GetComponent<Rigidbody2D>();
-        //col = GetComponent<Collider2D>();
-
-        playerCollider = null;
-        Collider2D[] cols = GetComponents<Collider2D>();
-        for (int i = 0; i < cols.Length; i++)
-        {
-            if(cols[i].isActiveAndEnabled)
-            {
-                playerCollider = cols[i];
-            }
-        }
-
-        if(playerCollider)
-        {
-            //Debug.Log(playerCollider.GetType());
-        }
-        
+    private void Awake()
+    {   
         playerRb.freezeRotation = true;
-
-        oldPlayerState = playerState = PlayerState.PLAYER_STATE_IDLE;
-
-        playerAnimation = GetComponent<SpriteAnimation>();
-
-        isRight = true;
-
-        SetIfOnBlock(false);
-
-        isGameOver = false;
+        transform.position = new Vector3(
+            transform.position.x,
+            -ScreenInfo.bgHalfSizeMatchX.y * startPosYCoefficient - ScreenInfo.bgPosYDeviationMatchX,
+            transform.position.z);
     }
 
-    private void FixedUpdate()
+    public void UpdatePlayer()
     {
         switch (playerState)
         {
             case PlayerState.PLAYER_STATE_IDLE:
-                Update_Idle();
+                UpdateStateIdle();
                 break;
             case PlayerState.PLAYER_STATE_TAP:
-                Update_Tap();
+                UpdateStateTap();
                 break;
             case PlayerState.PLAYER_STATE_JUMP_UP:
-                Update_Jump_Up();
+                UpdateStateJumpUp();
                 break;
             case PlayerState.PLAYER_STATE_JUMP_DOWN:
-                Update_Jump_Down();
+                UpdateStateJumpDown();
                 break;
             default:
                 break;
         }
 
-        posLeft = transform.position.x + halfSize;
-        posRight = transform.position.x - halfSize;
-
         // 画面外チェック
-        if (posLeft < -halfScreenWidth ||
-            posRight > halfScreenWidth ||
-            transform.position.y < Camera.main.transform.position.y - halfScreenHeight)
+        if (objectProperty.GetObjBorder().right < -ScreenInfo.screenHalfSize.x ||
+            objectProperty.GetObjBorder().left > ScreenInfo.screenHalfSize.x ||
+            transform.position.y < cam.transform.position.y - ScreenInfo.screenHalfSize.y)
         {
             SetGameOver();
         }
     }
 
-    public void Push(Vector2 force)
+    public void SetJump(Vector2 force)
     {
         playerRb.AddForce(force, ForceMode2D.Impulse);
-        //AudioManager.PlaySE(AudioManager.SE.SE_GAME_PLAYER_JUMP, 1);
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_GAME_PLAYER_JUMP, 1);
     }
 
     public void ActivateRb()
@@ -123,9 +77,9 @@ public class ObjectWithFlick : MonoBehaviour
         playerRb.isKinematic = false;
     }
 
-    public void DisactivateRb(bool continue_jump)
+    public void DisactivateRb(bool unlimited_jump)
     {
-        if(continue_jump)
+        if(unlimited_jump)
         {
             playerRb.velocity = Vector3.zero;
             playerRb.angularVelocity = 0f;
@@ -139,7 +93,7 @@ public class ObjectWithFlick : MonoBehaviour
 
     public void SetPlayerState(PlayerState player_state)
     {
-        oldPlayerState = playerState;
+        playerOldState = playerState;
         playerState = player_state;
     }
 
@@ -157,19 +111,19 @@ public class ObjectWithFlick : MonoBehaviour
         playerAnimation.SetDirection(isRight);
     }
 
-    private void Update_Idle()
+    private void UpdateStateIdle()
     {
         playerAnimation.PlayerIdle();
     }
 
-    private void Update_Tap()
+    private void UpdateStateTap()
     {
         playerAnimation.PlayerTap();
 
         oldPosY = transform.position.y;
     }
 
-    private void Update_Jump_Up()
+    private void UpdateStateJumpUp()
     {
         playerAnimation.PlayerJump();
 
@@ -183,9 +137,19 @@ public class ObjectWithFlick : MonoBehaviour
         }
     }
 
-    private void Update_Jump_Down()
+    private void UpdateStateJumpDown()
     {
         playerAnimation.PlayerJump();
+    }
+
+    public PlayerState GetPlayerState()
+    {
+        return playerState;
+    }
+
+    public PlayerState GetPlayerOldState()
+    {
+        return playerOldState;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -199,7 +163,7 @@ public class ObjectWithFlick : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Plane") && (playerState == PlayerState.PLAYER_STATE_JUMP_DOWN ||
-            (playerState == PlayerState.PLAYER_STATE_JUMP_UP && oldPlayerState == PlayerState.PLAYER_STATE_TAP)))
+            (playerState == PlayerState.PLAYER_STATE_JUMP_UP && playerOldState == PlayerState.PLAYER_STATE_TAP)))
         {
             SetIfOnBlock(true);
             playerRb.velocity = Vector3.zero;
@@ -228,12 +192,10 @@ public class ObjectWithFlick : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            //if(!audioManager.GetIsPlaying(2))
+            if(!AudioManager.GetIsPlaying(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_B))
             {
-                //audioManager.PlaySE(AudioManager.SE.SE_GAME_PLAYER_COLLISION, 2);
+                AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_B, AudioManager.SE.SE_GAME_PLAYER_COLLISION);
             }
-
-            //SetGameOver();
         }
     }
 

@@ -4,32 +4,25 @@ using UnityEngine;
 
 public class Flick : MonoBehaviour
 {
-    Camera cam;
+    [SerializeField] private Camera cam = null;
+    [SerializeField] private ObjectWithFlick player = null;
+    [SerializeField] private Trajectory trajectory = null;
 
-    public ObjectWithFlick objWithFlick;
-    public Trajectory trajectory;
-    public bool continueJump = false;
+    [SerializeField] private bool unlimitedJump = false;
+    [SerializeField] float pushForce = 4.0f;
+    [SerializeField] private Vector2 startPoint = Vector2.zero;
+    [SerializeField] private Vector2 endPoint = Vector2.zero;
+    [SerializeField] private Vector2 direction = Vector2.zero;
+    [SerializeField] private Vector2 force = Vector2.zero;
+    [SerializeField] private float distance = 0.0f;
+    [SerializeField] [Range(0.0f, 3.0f)] private float distanceMax = 0.0f;
 
-    AudioManager audioManager;
-
-    [SerializeField] float pushForce = 4f;
-
-    [SerializeField] Vector2 startPoint;
-    [SerializeField] Vector2 endPoint;
-    Vector2 direction;
-    Vector2 force;
-    public float distance;
-    [SerializeField] [Range(0.0f, 3.0f)] float distanceMax = 0.0f;
-
-    bool isDragging = false;
+    [SerializeField] private bool isDragging = false;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        cam = Camera.main;
         //objWithFlick.DisactivateRb();
-
-        float y = ScreenInfo.screenCoefficient.y;
     }
 
     // Update is called once per frame
@@ -37,12 +30,12 @@ public class Flick : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            continueJump = !continueJump;
+            unlimitedJump = !unlimitedJump;
         }
 
-        if ((objWithFlick.playerState == ObjectWithFlick.PlayerState.PLAYER_STATE_IDLE ||
-            objWithFlick.playerState == ObjectWithFlick.PlayerState.PLAYER_STATE_TAP ||
-            continueJump) && !objWithFlick.GetIfGameOver())
+        if ((player.GetPlayerState() == ObjectWithFlick.PlayerState.PLAYER_STATE_IDLE ||
+            player.GetPlayerState() == ObjectWithFlick.PlayerState.PLAYER_STATE_TAP ||
+            unlimitedJump) && !player.GetIfGameOver())
         {
             if (Application.isEditor || Application.platform == RuntimePlatform.WindowsPlayer)
             {
@@ -83,23 +76,22 @@ public class Flick : MonoBehaviour
     }
 
     // Drag
-    void OnDragStart()
+    private void OnDragStart()
     {
         isDragging = true;
-        objWithFlick.DisactivateRb(continueJump);
+        player.DisactivateRb(unlimitedJump);
         startPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         endPoint = startPoint;
         distance = Vector2.Distance(startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
         force = direction * distance * pushForce;
 
-
-        objWithFlick.SetPlayerState(ObjectWithFlick.PlayerState.PLAYER_STATE_TAP);
-        trajectory.UpdateDots(objWithFlick.pos, force);
+        player.SetPlayerState(ObjectWithFlick.PlayerState.PLAYER_STATE_TAP);
+        trajectory.UpdateDots(player.pos, force);
         trajectory.Show();
     }
 
-    void OnDrag()
+    private void OnDrag()
     {
         if(isDragging)
         {
@@ -118,22 +110,22 @@ public class Flick : MonoBehaviour
             //just for debug
             //Debug.DrawLine(startPoint, endPoint);
 
-            objWithFlick.UpdateDirection(direction.x);
+            player.UpdateDirection(direction.x);
 
-            trajectory.UpdateDots(objWithFlick.pos, force);
+            trajectory.UpdateDots(player.pos, force);
         }
     }
 
-    void OnDragEnd()
+    private void OnDragEnd()
     {
         if (isDragging)
         {
             //push the object
-            objWithFlick.ActivateRb();
+            player.ActivateRb();
 
-            objWithFlick.Push(force);
+            player.SetJump(force);
 
-            objWithFlick.SetPlayerState(ObjectWithFlick.PlayerState.PLAYER_STATE_JUMP_UP);
+            player.SetPlayerState(ObjectWithFlick.PlayerState.PLAYER_STATE_JUMP_UP);
 
             distance = 0.0f;
 

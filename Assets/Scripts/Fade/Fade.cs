@@ -27,7 +27,7 @@ public abstract class Fade : MonoBehaviour
 
     private void Awake()
     {
-        uiPartsMoveY = uiPartsMoveYDefault / ScreenInfo.screenOriginSize.y * Screen.height * uiPartsMoveYCoefficient;
+        uiPartsMoveY = uiPartsMoveYDefault / ScreenInfo.screenDefaultSize.y * Screen.height * uiPartsMoveYCoefficient;
     }
 
     //public abstract void FadeIn();

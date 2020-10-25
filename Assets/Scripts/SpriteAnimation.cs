@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class SpriteAnimation : MonoBehaviour
 {
-    public Sprite[] sprites;
-    public float framesPerSec;
-
-    private SpriteRenderer spriteRender;
-
-    void Start()
-    {
-        spriteRender = GetComponent<SpriteRenderer>();
-    }
+    [SerializeField] private SpriteRenderer spriteRender = null;
+    [SerializeField] private Sprite[] sprites = null;
+    [SerializeField] private float framesPerSec = 0.0f;
 
     public void PlayerIdle()
     {
