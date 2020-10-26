@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public abstract class Fade : MonoBehaviour
+public class Fade : MonoBehaviour
 {
     [SerializeField] protected Tween fadeAni;
     [SerializeField] protected Image fadeImage = null;
@@ -29,10 +29,6 @@ public abstract class Fade : MonoBehaviour
     {
         uiPartsMoveY = uiPartsMoveYDefault / ScreenInfo.screenDefaultSize.y * Screen.height * uiPartsMoveYCoefficient;
     }
-
-    //public abstract void FadeIn();
-
-    //public abstract void FadeOut();
 
     public void FadeIn()
     {
@@ -71,7 +67,7 @@ public abstract class Fade : MonoBehaviour
         fadeImage.gameObject.SetActive(false);
     }
 
-    public void FadeOutEnd()
+    public virtual void FadeOutEnd()
     {
         fadeState = FadeState.FADE_STATE_NEXT_SCENE;
     }

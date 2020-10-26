@@ -22,7 +22,8 @@ public class Flick : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        //objWithFlick.DisactivateRb();
+        //pushForce *= ScreenInfo.screenCoefficient.x;
+        distanceMax *= Mathf.Sqrt(ScreenInfo.screenCoefficient.x);
     }
 
     // Update is called once per frame
@@ -85,6 +86,7 @@ public class Flick : MonoBehaviour
         distance = Vector2.Distance(startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
         force = direction * distance * pushForce;
+        //force = direction * distance;
 
         player.SetPlayerState(ObjectWithFlick.PlayerState.PLAYER_STATE_TAP);
         trajectory.UpdateDots(player.pos, force);
@@ -106,6 +108,7 @@ public class Flick : MonoBehaviour
 
             direction = (startPoint - endPoint).normalized;
             force = direction * distance * pushForce;
+            //force = direction * distance;
 
             //just for debug
             //Debug.DrawLine(startPoint, endPoint);

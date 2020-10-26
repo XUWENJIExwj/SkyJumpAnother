@@ -5,17 +5,9 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine.UI;
 
-public class ResultManager : MonoBehaviour
+public class ResultManager : CommonManager
 {
-    public float screenWidth;
-    public float screenHeight;
-
     private SpriteRenderer resultSpriteRenderer;
-
-    public GameObject audioManagerPrefab;
-    public AudioManager audioManager;
-    public GameObject skinSupportPrefab;
-    public SkinInfo skinSupport;
 
     public GameObject canvasOldScene;
     public CanvasManager canvasManager;
@@ -29,218 +21,223 @@ public class ResultManager : MonoBehaviour
     public bool hasCreatedSoul;
     public GameObject player;
     public GameObject soulPrefab;
-    public ResultFade fade;
     public InputField inputer;
     public CheckStringByte checkStringByte;
 
     public RankInfo rank;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+    }
+
     // Start is called before the first frame update
-    void Start()
-    {
-        screenWidth = (float)Screen.width / 100;
-        screenHeight = (float)Screen.height / 100;
+    //void Start()
+    //{
+    //    screenWidth = (float)Screen.width / 100;
+    //    screenHeight = (float)Screen.height / 100;
 
-        resultSpriteRenderer = GetComponent<SpriteRenderer>();
+    //    resultSpriteRenderer = GetComponent<SpriteRenderer>();
 
-        resultSpriteRenderer.size = new Vector2(6.4f * screenHeight / 11.36f, screenHeight);
+    //    resultSpriteRenderer.size = new Vector2(6.4f * screenHeight / 11.36f, screenHeight);
 
-        RectTransform frame = scoreFrame.GetComponent<RectTransform>();
+    //    RectTransform frame = scoreFrame.GetComponent<RectTransform>();
 
-        // AudioManagerへのアタッチ
-        if (!GameObject.Find("AudioManager"))
-        {
-            Instantiate(audioManagerPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity).name = "AudioManager";
-        }
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    //    // AudioManagerへのアタッチ
+    //    if (!GameObject.Find("AudioManager"))
+    //    {
+    //        Instantiate(audioManagerPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity).name = "AudioManager";
+    //    }
+    //    audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
-        // SkinManagerへのアタッチ
-        if (!GameObject.Find("SkinSupport"))
-        {
-            Instantiate(skinSupportPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity).name = "SkinSupport";
-        }
-        skinSupport = GameObject.Find("SkinSupport").GetComponent<SkinInfo>();
+    //    // SkinManagerへのアタッチ
+    //    if (!GameObject.Find("SkinSupport"))
+    //    {
+    //        Instantiate(skinSupportPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity).name = "SkinSupport";
+    //    }
+    //    skinSupport = GameObject.Find("SkinSupport").GetComponent<SkinInfo>();
 
-        //player.GetComponent<SpriteRenderer>().color = new Vector4(
-        //    skinSupport.GetPlayerColor().r * 140 / 255.0f,
-        //    skinSupport.GetPlayerColor().g * 140 / 255.0f,
-        //    skinSupport.GetPlayerColor().b * 140 / 255.0f,
-        //    1.0f);
+    //    //player.GetComponent<SpriteRenderer>().color = new Vector4(
+    //    //    skinSupport.GetPlayerColor().r * 140 / 255.0f,
+    //    //    skinSupport.GetPlayerColor().g * 140 / 255.0f,
+    //    //    skinSupport.GetPlayerColor().b * 140 / 255.0f,
+    //    //    1.0f);
 
-        //player.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
+    //    //player.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
 
-        if (canvasOldScene = GameObject.Find("Canvas"))
-        {
-            score = canvasOldScene.GetComponentInChildren<Score>();
-            Destroy(canvasOldScene);
-        }
-        else
-        {
-            scoreOther.gameObject.SetActive(true);
-            score = scoreOther;
-            score.tag = "Score";
-            //score.score = 100;
-        }
+    //    if (canvasOldScene = GameObject.Find("Canvas"))
+    //    {
+    //        score = canvasOldScene.GetComponentInChildren<Score>();
+    //        Destroy(canvasOldScene);
+    //    }
+    //    else
+    //    {
+    //        scoreOther.gameObject.SetActive(true);
+    //        score = scoreOther;
+    //        score.tag = "Score";
+    //        //score.score = 100;
+    //    }
 
-        score.transform.SetParent(scoreDisplay.transform);
+    //    score.transform.SetParent(scoreDisplay.transform);
 
-        //scoreBest.scoreIndex = score.scoreIndex;
+    //    //scoreBest.scoreIndex = score.scoreIndex;
 
-        canvasManager.SetScorePosition(-40.0f, frame.anchoredPosition.y - 15.0f);
-        canvasManager.SetScoreSize(0.65f, 0.65f);
+    //    canvasManager.SetScorePosition(-40.0f, frame.anchoredPosition.y - 15.0f);
+    //    canvasManager.SetScoreSize(0.65f, 0.65f);
 
-        //rank.LoadRankBinary();
+    //    //rank.LoadRankBinary();
 
-        //rank.LoadRank();
+    //    //rank.LoadRank();
 
-        //if (rank.CheckIfRankIn(score.score))
-        //{
-        //    inputer.gameObject.SetActive(true);
-        //    // 入力処理
-        //    rank.SetNewRankInfo("Player", score.score);
-        //    rank.SortRank();
-        //    //rank.SortRankBinary();
-        //}
+    //    //if (rank.CheckIfRankIn(score.score))
+    //    //{
+    //    //    inputer.gameObject.SetActive(true);
+    //    //    // 入力処理
+    //    //    rank.SetNewRankInfo("Player", score.score);
+    //    //    rank.SortRank();
+    //    //    //rank.SortRankBinary();
+    //    //}
 
-        //scoreBest.SetScore((float)rank.LoadChampionInfo().score / score.scoreIndex);
+    //    //scoreBest.SetScore((float)rank.LoadChampionInfo().score / score.scoreIndex);
 
-        canvasManager.SetScoreBestPosition(45.0f, frame.anchoredPosition.y - 175.0f);
-        canvasManager.SetScoreBestSize(0.48f, 0.48f);
+    //    canvasManager.SetScoreBestPosition(45.0f, frame.anchoredPosition.y - 175.0f);
+    //    canvasManager.SetScoreBestSize(0.48f, 0.48f);
 
-        // BGMの再生
-        //audioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
+    //    // BGMの再生
+    //    //audioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
 
-        hasCreatedSoul = false;
+    //    hasCreatedSoul = false;
 
-        fade.SetFadeState(Fade.FadeState.FADE_STATE_IN);
-    }
+    //    fade.SetFadeState(Fade.FadeState.FADE_STATE_IN);
+    //}
 
-    private void FixedUpdate()
-    {
-        switch (fade.GetFadeState())
-        {
-            case Fade.FadeState.FADE_STATE_IN:
-                fade.FadeIn();
-                break;
-            case Fade.FadeState.FADE_STATE_OUT:
-                fade.FadeOut();
-                break;
-            case Fade.FadeState.FADE_STATE_NEXT_SCENE:
-                Destroy(canvasManager.gameObject);
-                SceneManager.LoadScene("Title");
-                break;
-            default:
-                SetLightSize();
+    //private void FixedUpdate()
+    //{
+    //    switch (fade.GetFadeState())
+    //    {
+    //        case Fade.FadeState.FADE_STATE_IN:
+    //            fade.FadeIn();
+    //            break;
+    //        case Fade.FadeState.FADE_STATE_OUT:
+    //            fade.FadeOut();
+    //            break;
+    //        case Fade.FadeState.FADE_STATE_NEXT_SCENE:
+    //            Destroy(canvasManager.gameObject);
+    //            SceneManager.LoadScene("Title");
+    //            break;
+    //        default:
+    //            SetLightSize();
 
-                if (lightObj.transform.localScale.x >= 1.0f && !hasCreatedSoul)
-                {
-                    CreateSoul();
-                }
-                break;
-        }
-    }
+    //            if (lightObj.transform.localScale.x >= 1.0f && !hasCreatedSoul)
+    //            {
+    //                CreateSoul();
+    //            }
+    //            break;
+    //    }
+    //}
 
-    public void InputNameOK()
-    {
-        //int idx = rank.GetNewRankInfo().rank - 1;
-        //rank.SetNewRankName(inputer.textComponent.text, idx);
+    //public void InputNameOK()
+    //{
+    //    //int idx = rank.GetNewRankInfo().rank - 1;
+    //    //rank.SetNewRankName(inputer.textComponent.text, idx);
 
-        //checkStringByte.MakeCharacterToLimit(rank.GetRankInfo(idx).name);
+    //    //checkStringByte.MakeCharacterToLimit(rank.GetRankInfo(idx).name);
 
-        //bool all_blank = true;
+    //    //bool all_blank = true;
 
-        //for (int i = 0; i < inputer.textComponent.text.Length; i++)
-        //{
-        //    if (inputer.textComponent.text[i] != 0x20)
-        //    {
-        //        all_blank = false;
-        //        break;
-        //    }
-        //}
+    //    //for (int i = 0; i < inputer.textComponent.text.Length; i++)
+    //    //{
+    //    //    if (inputer.textComponent.text[i] != 0x20)
+    //    //    {
+    //    //        all_blank = false;
+    //    //        break;
+    //    //    }
+    //    //}
 
-        //if(all_blank)
-        //{
-        //    rank.SetNewRankName("Player", idx);
-        //}
+    //    //if(all_blank)
+    //    //{
+    //    //    rank.SetNewRankName("Player", idx);
+    //    //}
 
-        //rank.SaveRank(idx);
-        //rank.SaveRankBinary();
+    //    //rank.SaveRank(idx);
+    //    //rank.SaveRankBinary();
 
-        //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
-        inputer.gameObject.SetActive(false);
-    }
+    //    //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
+    //    inputer.gameObject.SetActive(false);
+    //}
 
-    public void InputNameCancel()
-    {
-        inputer.textComponent.text = "";
+    //public void InputNameCancel()
+    //{
+    //    inputer.textComponent.text = "";
 
-        //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
-        inputer.gameObject.SetActive(false);
-    }
+    //    //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
+    //    inputer.gameObject.SetActive(false);
+    //}
 
-    // Update is called once per frame
-    public void GoToTitleScene()
-    {
-        InputNameCancel();
-        fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
-    }
+    //// Update is called once per frame
+    //public void GoToTitleScene()
+    //{
+    //    InputNameCancel();
+    //    fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
+    //}
 
-//    public int LoadScore()
-//    {
-//        string path;
-//        string filename = "/score.txt";
+    //    public int LoadScore()
+    //    {
+    //        string path;
+    //        string filename = "/score.txt";
 
-//        if (Application.isEditor)
-//        {
-//            path = Application.dataPath + filename;
-//        }
-//        else
-//        {
-//#if UNITY_IOS
+    //        if (Application.isEditor)
+    //        {
+    //            path = Application.dataPath + filename;
+    //        }
+    //        else
+    //        {
+    //#if UNITY_IOS
 
-//#elif UNITY_ANDROID
+    //#elif UNITY_ANDROID
 
-//            path = Application.persistentDataPath + filename;
-//#endif
-//        }
+    //            path = Application.persistentDataPath + filename;
+    //#endif
+    //        }
 
-//        if (File.Exists(path))
-//        {
-//            StreamReader sr = new StreamReader(path);
-//            int s = int.Parse(sr.ReadLine());
-//            sr.Close();
-//            return s;
-//        }
-//        else
-//        {
-//            return 0;
-//        }
-//    }
+    //        if (File.Exists(path))
+    //        {
+    //            StreamReader sr = new StreamReader(path);
+    //            int s = int.Parse(sr.ReadLine());
+    //            sr.Close();
+    //            return s;
+    //        }
+    //        else
+    //        {
+    //            return 0;
+    //        }
+    //    }
 
-//    public void SaveScore(string s)
-//    {
-//        string path;
-//        string filename = "/score.txt";
+    //    public void SaveScore(string s)
+    //    {
+    //        string path;
+    //        string filename = "/score.txt";
 
-//        if (Application.isEditor)
-//        {
-//            path = Application.dataPath + filename;
-//        }
-//        else
-//        {
-//#if UNITY_IOS
+    //        if (Application.isEditor)
+    //        {
+    //            path = Application.dataPath + filename;
+    //        }
+    //        else
+    //        {
+    //#if UNITY_IOS
 
-//#elif UNITY_ANDROID
+    //#elif UNITY_ANDROID
 
-//            path = Application.persistentDataPath + filename;
-//#endif
-//        }
-        
-//        StreamWriter sw = new StreamWriter(path, false); //true=追記 false=上書き
-//        sw.WriteLine(s);
-//        sw.Flush();
-//        sw.Close();
-//    }
+    //            path = Application.persistentDataPath + filename;
+    //#endif
+    //        }
+
+    //        StreamWriter sw = new StreamWriter(path, false); //true=追記 false=上書き
+    //        sw.WriteLine(s);
+    //        sw.Flush();
+    //        sw.Close();
+    //    }
 
     public void SetLightSize()
     {

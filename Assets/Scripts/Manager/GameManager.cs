@@ -10,33 +10,17 @@ public class GameManager : CommonManager
     [SerializeField] private Trajectory trajectory = null;
 
     [SerializeField] private BGBehaviour[] bgBehaviours = null;
+    [SerializeField] private LineCreator lineCreator = null;
 
     static public int bgNum { get; private set; }
 
     [SerializeField] private int oldStep = 0;
     [SerializeField] private int step = 0;
 
-    //public ObjectCreator objectCreator;
-    //public CanvasManager canvasManager;
-
-    //public GameObject score;
-    //public GameObject scoreFrame;
-
-    //void Awake()
-    //{
-    //playerObjWithFlick.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
-
-    //canvasManager.SetScorePosition(Screen.width / 2 - 300.0f, Screen.height / 2 * 0.9f);
-
-    //scoreFrame.transform.localPosition = score.transform.localPosition;
-    //scoreFrame.transform.localScale = score.transform.localScale;
-
-    //}
-
     protected override void Awake()
     {
         base.Awake();
-        //rank.LoadRankBinary();
+        nextScene = "Title";
     }
 
     protected override void Start()
@@ -71,9 +55,11 @@ public class GameManager : CommonManager
             bgBehaviours[i].UpdateBg();
         }
 
+        lineCreator.UpdateLine(cam.transform.position.y);
+
         cameraBehaviour.UpdateCamera(player.gameObject.transform.position.y);
 
-        if (player.GetIfGameOver())
+        if (player.GetIfGameOver() && fade.GetFadeState() == Fade.FadeState.FADE_STATE_NONE)
         {
             SetGameOver();
         }
@@ -93,7 +79,9 @@ public class GameManager : CommonManager
 
     public void SetGameOver()
     {
+        RankInfo.SetNewRankInfo("Player", Score.score);
         fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
+        fade.FadeOut();
         AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_GAME_OVER, 0.2f);
     }
 }

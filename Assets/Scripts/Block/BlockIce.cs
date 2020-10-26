@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockIce : BlockNormal
 {
-    public PhysicsMaterial2D ice;
+    [SerializeField] private PhysicsMaterial2D ice = null;
 
     private void OnTriggerStay2D(Collider2D collision)
     {

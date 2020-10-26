@@ -8,6 +8,11 @@ public class SpriteAnimation : MonoBehaviour
     [SerializeField] private Sprite[] sprites = null;
     [SerializeField] private float framesPerSec = 0.0f;
 
+    private void Awake()
+    {
+        spriteRender = GetComponent<SpriteRenderer>();
+    }
+
     public void PlayerIdle()
     {
         spriteRender.sprite = sprites[0];

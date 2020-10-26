@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class RankManger : CommonManager
 {
-    //public GameObject canvas;
     [SerializeField] private Text[] rankText = null;
     [SerializeField] private Text[] nameText = null;
     [SerializeField] private Text[] scoreText = null;
@@ -19,7 +18,6 @@ public class RankManger : CommonManager
     protected override void Start()
     {
         RankInfo.LoadRank();
-        //rank.LoadRankBinary();
 
         for (int i = 0; i < 5; i++)
         {
@@ -39,16 +37,5 @@ public class RankManger : CommonManager
 
         AudioManager.PlayBGM(AudioManager.BGM.BGM_TITLE);
         base.Start();
-    }
-
-    public override void GoToNextScene()
-    {
-        //Destroy(canvas);
-        SceneManager.LoadScene(nextScene);
-    }
-
-    public override void UpdateThisScene()
-    {
-
     }
 }

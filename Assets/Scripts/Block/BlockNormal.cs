@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class BlockNormal : MonoBehaviour
 {
-    public Rigidbody2D playerRb = null;
-    public ObjectWithFlick player = null;
-    public BoxCollider2D boxCollider;
-    public Score score;
-    public Trajectory trajectory;
+    [SerializeField] protected Rigidbody2D playerRb = null;
+    [SerializeField] protected ObjectWithFlick player = null;
+    [SerializeField] protected BoxCollider2D boxCollider = null;
+    [SerializeField] protected Trajectory trajectory = null;
 
     private bool hasScore = false;
 
@@ -65,16 +64,28 @@ public class BlockNormal : MonoBehaviour
         }
     }
 
+    public void SetPlayerInfo(ObjectWithFlick object_with_flick, Rigidbody2D player_rb)
+    {
+        player = object_with_flick;
+        playerRb = player_rb;
+    }
+
+    public void SetTrajectory(Trajectory player_trajectory)
+    {
+        trajectory = player_trajectory;
+    }
+
     public void SetScore()
     {
         if (!hasScore)
         {
             hasScore = true;
-            //score.SetScore(
-            //    transform.position.y +
-            //    Camera.main.orthographicSize + // Cameraによる座標調整
-            //    boxCollider.size.y / 2 * transform.localScale.y // blockの中心から最高点の位置
-            //    );
+
+            float score = transform.position.y +
+                ScreenInfo.cameraOrthographicSize - // Cameraによる座標調整
+                ScreenInfo.bgPosYDeviationMatchX +
+                boxCollider.size.y / 2 * transform.localScale.y; // blockの中心から最高点の位置
+            Score.SetScore(score / ScreenInfo.screenCoefficient.x);
         }
     }
 }

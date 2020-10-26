@@ -126,7 +126,6 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   player: {fileID: 0}
   boxCollider: {fileID: 0}
-  score: {fileID: 0}
   trajectory: {fileID: 0}
   ice: {fileID: 6200000, guid: ab7b635746d59104e8a639c45b66b786, type: 2}
 --- !u!114 &3690047966534633005
@@ -143,5 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objSize: {x: 0, y: 0}
   objHalfSize: {x: 0, y: 0}
-  objSizeDefault: {x: 0.12, y: 0.12}
-  sizeCoefficient: 0
+  objSizeDefault: {x: 0.1, y: 0.1}
+  objSizeDeviation: {x: 0, y: 0}
+  sizeSliced: {x: 1, y: 1}

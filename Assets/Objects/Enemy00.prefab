@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -217529842978544859}
   - component: {fileID: 3226612581201200671}
   - component: {fileID: 2404634129218985090}
+  - component: {fileID: -3134680367426079685}
   m_Layer: 0
   m_Name: Enemy00
   m_TagString: Enemy
@@ -97,8 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  speedMin: 0.02
-  speedMax: 0.05
+  speed: 0
+  speedMin: 0.01
+  speedMax: 0.03
+  isRight: 0
+  enemySpriteAnimation: {fileID: 0}
 --- !u!114 &3226612581201200671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57aa0a6ece12884ab0b8ec4e2f046dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRender: {fileID: 0}
   sprites:
   - {fileID: 21300000, guid: d70205817b29b4b4daf1cec3ec53a87c, type: 3}
   - {fileID: 21300000, guid: 8828ce32d056aff48ac838009b9672a8, type: 3}
@@ -131,3 +136,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0.23492917, y: 0.1894939}
   m_Size: {x: 6.6262565, y: 5.282448}
   m_Direction: 1
+--- !u!114 &-3134680367426079685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2475871844707399881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f93fcac20bedb45bc23e7328ac798a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objSize: {x: 0, y: 0}
+  objHalfSize: {x: 0, y: 0}
+  objSizeDefault: {x: 0.08, y: 0.08}
+  objSizeDeviation: {x: 0, y: 0}
+  sizeSliced: {x: 1, y: 1}

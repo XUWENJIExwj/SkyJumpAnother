@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectWithFlick : MonoBehaviour
 {
     [SerializeField] private Camera cam = null;
+    [SerializeField] private SpriteRenderer spriteRenderer = null;
     [SerializeField] private ObjectProperty objectProperty = null;
     [SerializeField] private Rigidbody2D playerRb = null;
     [SerializeField] [Range(0.0f, 1.0f)] private float startPosYCoefficient = 0.0f;
@@ -29,7 +30,8 @@ public class ObjectWithFlick : MonoBehaviour
     [SerializeField] private bool isGameOver = false;
 
     private void Awake()
-    {   
+    {
+        spriteRenderer.color = SkinInfo.skinColor;
         playerRb.freezeRotation = true;
         transform.position = new Vector3(
             transform.position.x,

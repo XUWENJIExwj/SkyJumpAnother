@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class CommonManager : MonoBehaviour
 {
@@ -15,13 +16,14 @@ public abstract class CommonManager : MonoBehaviour
     protected virtual void Awake()
     {
         cam.orthographicSize = ScreenInfo.cameraOrthographicSize;
-        InitUI();
     }
 
     protected virtual void Start()
     {
         fade.SetFadeState(Fade.FadeState.FADE_STATE_IN);
         fade.FadeIn();
+
+        InitUI();
     }
 
     private void FixedUpdate()
@@ -43,7 +45,7 @@ public abstract class CommonManager : MonoBehaviour
     private void Update()
     {
         // 完成後削除
-        InitUI();
+        //InitUI();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -56,11 +58,17 @@ public abstract class CommonManager : MonoBehaviour
         } 
     }
 
-    public abstract void GoToNextScene();
+    public virtual void GoToNextScene()
+    {
+        SceneManager.LoadScene(nextScene);
+    }
 
-    public abstract void UpdateThisScene();
+    public virtual void UpdateThisScene()
+    {
 
-    public void PrepareToGoToNextScene(string next_scene)
+    }
+
+    public virtual void PrepareToGoToNextScene(string next_scene)
     {
         if (fade.GetFadeState() == Fade.FadeState.FADE_STATE_NONE)
         {

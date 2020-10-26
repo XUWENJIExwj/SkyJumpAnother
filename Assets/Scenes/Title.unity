@@ -7524,6 +7524,7 @@ MonoBehaviour:
   objectProperties: []
   bestMark: {fileID: 1114343222}
   scoreBest: {fileID: 749964019}
+  particle: {fileID: 1363589302}
 --- !u!4 &1695972464
 Transform:
   m_ObjectHideFlags: 0
@@ -7638,7 +7639,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1897337385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db76c8e63f44ca445932ec1274e11a82, type: 3}
+  m_Script: {fileID: 11500000, guid: cf3dcecaf1ea371468c83fa56d47869f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 482393647}

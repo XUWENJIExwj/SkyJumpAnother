@@ -32,8 +32,8 @@ public class Score : MonoBehaviour
 
         for (int i = 1; i < images.Length; i++)
         {
-            //images[i].sprite = sprites[sprites.Length - 1];
-            images[i].sprite = sprites[0];
+            images[i].sprite = sprites[sprites.Length - 1];
+            //images[i].sprite = sprites[0];
         }
     }
 

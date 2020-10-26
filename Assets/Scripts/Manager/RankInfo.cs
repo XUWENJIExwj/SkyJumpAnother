@@ -21,8 +21,6 @@ public class RankInfo : MonoBehaviour
     static private RankData[] rankData;
     static private RankData newRank;
 
-    
-
     // 完成後削除
     bool isExist = false;
 

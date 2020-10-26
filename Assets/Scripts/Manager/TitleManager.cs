@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class TitleManager : CommonManager
 {
-    //public GameObject canvas;
-
     [SerializeField] private GameObject bestMark = null;
     [SerializeField] private Text scoreBest = null;
-
-    //public GameObject particle;
+    [SerializeField] private GameObject particle = null;
 
     protected override void Awake()
     {
         base.Awake();
-        //rank.LoadRankBinary();
     }
 
     protected override void Start()
@@ -42,19 +37,15 @@ public class TitleManager : CommonManager
             bestMark.SetActive(false);
             scoreBest.gameObject.SetActive(false);
         }
-
-        //RankInfo.RankDebug();
     }
 
+    public override void PrepareToGoToNextScene(string next_scene)
+    {
+        Destroy(particle);
+        base.PrepareToGoToNextScene(next_scene);
+    }
     public override void GoToNextScene()
     {
-        //Destroy(canvas);
-        //Destroy(particle);
-        SceneManager.LoadScene(nextScene);
-    }
-
-    public override void UpdateThisScene()
-    {
-
+        base.GoToNextScene();
     }
 }
