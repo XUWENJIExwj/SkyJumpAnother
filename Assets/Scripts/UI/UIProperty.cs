@@ -38,6 +38,7 @@ public abstract class UIProperty : MonoBehaviour
     }
 
     [SerializeField] protected OrderReference orderReference = OrderReference.ORDER_REFERENCE_NONE;
+    [SerializeField] protected int orderStartIndex = 1;
     [SerializeField] [Range(-2.0f, 2.0f)] private float spaceCoefficient = 0.0f;
 
     protected virtual void Awake()
@@ -122,9 +123,9 @@ public abstract class UIProperty : MonoBehaviour
     {
         float space = GetOrderReferenceSpace().x * coefficient;
 
-        for (int i = 1; i < rectTransform.Length; i++)
+        for (int i = orderStartIndex; i < rectTransform.Length; i++)
         {
-            float pos_x = rectTransform[0].position.x + i * space;
+            float pos_x = rectTransform[orderStartIndex - 1].position.x + (i - orderStartIndex + 1) * space;
             rectTransform[i].position = new Vector3(pos_x, rectTransform[i].position.y, rectTransform[i].position.z);
         }
     }
@@ -133,9 +134,9 @@ public abstract class UIProperty : MonoBehaviour
     {
         float space = GetOrderReferenceSpace().y * coefficient;
 
-        for (int i = 1; i < rectTransform.Length; i++)
+        for (int i = orderStartIndex; i < rectTransform.Length; i++)
         {
-            float pos_y = rectTransform[0].position.y + i * space;
+            float pos_y = rectTransform[orderStartIndex - 1].position.y + (i - orderStartIndex + 1) * space;
             rectTransform[i].position = new Vector3(rectTransform[i].position.x, pos_y, rectTransform[i].position.z);
         }
     }

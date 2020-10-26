@@ -17,6 +17,7 @@ public class RankManger : CommonManager
 
     protected override void Start()
     {
+        SetBgSize();
         RankInfo.LoadRank();
 
         for (int i = 0; i < 5; i++)

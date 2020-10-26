@@ -8,6 +8,7 @@ public class BlockNormal : MonoBehaviour
     [SerializeField] protected ObjectWithFlick player = null;
     [SerializeField] protected BoxCollider2D boxCollider = null;
     [SerializeField] protected Trajectory trajectory = null;
+    [SerializeField] protected Score score = null;
 
     private bool hasScore = false;
 
@@ -75,17 +76,22 @@ public class BlockNormal : MonoBehaviour
         trajectory = player_trajectory;
     }
 
+    public void SetScore(Score player_score)
+    {
+        score = player_score;
+    }
+
     public void SetScore()
     {
         if (!hasScore)
         {
             hasScore = true;
 
-            float score = transform.position.y +
+            float s = transform.position.y +
                 ScreenInfo.cameraOrthographicSize - // Cameraによる座標調整
                 ScreenInfo.bgPosYDeviationMatchX +
                 boxCollider.size.y / 2 * transform.localScale.y; // blockの中心から最高点の位置
-            Score.SetScore(score / ScreenInfo.screenCoefficient.x);
+            score.SetScore(s / ScreenInfo.screenCoefficient.x);
         }
     }
 }

@@ -8,6 +8,7 @@ public class GameManager : CommonManager
     [SerializeField] private CameraBehaviour cameraBehaviour = null;
     [SerializeField] private ObjectWithFlick player = null;
     [SerializeField] private Trajectory trajectory = null;
+    [SerializeField] private Score score = null;
 
     [SerializeField] private BGBehaviour[] bgBehaviours = null;
     [SerializeField] private LineCreator lineCreator = null;
@@ -79,7 +80,7 @@ public class GameManager : CommonManager
 
     public void SetGameOver()
     {
-        RankInfo.SetNewRankInfo("Player", Score.score);
+        RankInfo.SetNewRankInfo("Player", score.GetScore());
         fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
         fade.FadeOut();
         AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_GAME_OVER, 0.2f);

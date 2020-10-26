@@ -7,24 +7,28 @@ using UnityEngine.UI;
 
 public class ResultManager : CommonManager
 {
-    private SpriteRenderer resultSpriteRenderer;
+    [SerializeField] private GameObject scoreFrame = null;
+    [SerializeField] private Score score = null;
+    [SerializeField] private Vector2 scoreDeviation = Vector2.zero;
+    [SerializeField] private Score scoreBest = null;
+    [SerializeField] private Vector2 scoreBestDeviation = Vector2.zero;
 
-    public GameObject canvasOldScene;
-    public CanvasManager canvasManager;
-    public GameObject scoreDisplay;
-    public Score score;
-    public Score scoreBest;
-    public Score scoreOther;
-    public GameObject scoreFrame;
-    public GameObject lightObj;
-    public float lightSize;
-    public bool hasCreatedSoul;
-    public GameObject player;
-    public GameObject soulPrefab;
-    public InputField inputer;
-    public CheckStringByte checkStringByte;
+    //public GameObject canvasOldScene;
+    //public CanvasManager canvasManager;
+    //public GameObject scoreDisplay;
+    //public Score score;
+    //public Score scoreBest;
+    //public Score scoreOther;
+    //public GameObject scoreFrame;
+    //public GameObject lightObj;
+    //public float lightSize;
+    //public bool hasCreatedSoul;
+    //public GameObject player;
+    //public GameObject soulPrefab;
+    //public InputField inputer;
+    //public CheckStringByte checkStringByte;
 
-    public RankInfo rank;
+    Vector2 work;
 
     protected override void Awake()
     {
@@ -32,15 +36,46 @@ public class ResultManager : CommonManager
 
     }
 
+    protected override void Start()
+    {
+        SetBgSize();
+        AudioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
+        base.Start();
+
+        work.x = score.transform.position.x;
+        work.y = score.transform.position.y;
+
+        FixScorePos();
+        FixScoreBestPos();
+    }
+
+    //private void Update()
+    //{
+    //    score.transform.position = new Vector3(
+    //        work.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.x,
+    //        work.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.y,
+    //        score.transform.position.z);
+    //}
+
+    private void FixScorePos()
+    {
+        score.transform.position = new Vector3(
+            score.transform.position.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.x,
+            score.transform.position.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.y,
+            score.transform.position.z);
+    }
+
+    private void FixScoreBestPos()
+    {
+        scoreBest.transform.position = new Vector3(
+            scoreBest.transform.position.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreBestDeviation.x,
+            scoreBest.transform.position.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreBestDeviation.y,
+            scoreBest.transform.position.z);
+    }
+
     // Start is called before the first frame update
     //void Start()
     //{
-    //    screenWidth = (float)Screen.width / 100;
-    //    screenHeight = (float)Screen.height / 100;
-
-    //    resultSpriteRenderer = GetComponent<SpriteRenderer>();
-
-    //    resultSpriteRenderer.size = new Vector2(6.4f * screenHeight / 11.36f, screenHeight);
 
     //    RectTransform frame = scoreFrame.GetComponent<RectTransform>();
 
@@ -239,22 +274,22 @@ public class ResultManager : CommonManager
     //        sw.Close();
     //    }
 
-    public void SetLightSize()
-    {
-        if (lightObj.transform.localScale.x < 1.0f && Time.fixedTime >= 0.3f)
-        {
-            lightObj.transform.localScale = new Vector3(lightObj.transform.localScale.x + lightSize, lightObj.transform.localScale.y, lightObj.transform.localScale.z);
-        }
-    }
+    //public void SetLightSize()
+    //{
+    //    if (lightObj.transform.localScale.x < 1.0f && Time.fixedTime >= 0.3f)
+    //    {
+    //        lightObj.transform.localScale = new Vector3(lightObj.transform.localScale.x + lightSize, lightObj.transform.localScale.y, lightObj.transform.localScale.z);
+    //    }
+    //}
 
-    public void CreateSoul()
-    {
-        hasCreatedSoul = true;
-        Vector3 pos = new Vector3(-0.6f, -3.1f, -2.0f);
-        GameObject soul = Instantiate(soulPrefab, pos, Quaternion.identity);
-        Animation animation = soul.GetComponent<Animation>();
-        //string clip = "Soul0" + skinSupport.GetPlayerType().ToString();
-        //animation.clip = animation.GetClip(clip);
-        //animation.Play();
-    }
+    //public void CreateSoul()
+    //{
+    //    hasCreatedSoul = true;
+    //    Vector3 pos = new Vector3(-0.6f, -3.1f, -2.0f);
+    //    GameObject soul = Instantiate(soulPrefab, pos, Quaternion.identity);
+    //    Animation animation = soul.GetComponent<Animation>();
+    //    //string clip = "Soul0" + skinSupport.GetPlayerType().ToString();
+    //    //animation.clip = animation.GetClip(clip);
+    //    //animation.Play();
+    //}
 }

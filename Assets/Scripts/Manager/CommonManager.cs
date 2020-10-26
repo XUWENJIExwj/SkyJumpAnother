@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public abstract class CommonManager : MonoBehaviour
 {
     [SerializeField] protected Camera cam = null;
+    [SerializeField] protected SpriteRenderer bg = null;
     [SerializeField] protected Fade fade;
     [SerializeField] protected UIProperty[] uiPartsMatchX = null; // Widthによる拡大縮小
     [SerializeField] protected UIProperty[] uiPartsMatchY = null; // Heightによる拡大縮小
-    [SerializeField] protected ObjectProperty[] objectProperties = null;
 
     protected string nextScene;
 
@@ -45,7 +45,7 @@ public abstract class CommonManager : MonoBehaviour
     private void Update()
     {
         // 完成後削除
-        //InitUI();
+        InitUI();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -66,6 +66,11 @@ public abstract class CommonManager : MonoBehaviour
     public virtual void UpdateThisScene()
     {
 
+    }
+
+    public void SetBgSize()
+    {
+        bg.size = ScreenInfo.bgSizeMatchY;
     }
 
     public virtual void PrepareToGoToNextScene(string next_scene)

@@ -5,18 +5,16 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
+    [SerializeField] private int score;
     [SerializeField] private int ScoreIndex = 0;
     [SerializeField] private int ScoreDigit = 5;
     [SerializeField] private int ScoreMax = 99999;
-    [SerializeField] private Sprite[] Sprites = null;
-    [SerializeField] private Image[] Images = null;
+    [SerializeField] private Sprite[] sprites = null;
+    [SerializeField] private Image[] images = null;
 
-    static public int score { get; private set; }
     static public int scoreIndex { get; private set; }
     static public int scoreDigit { get; private set; }
     static public int scoreMax { get; private set; }
-    static private Sprite[] sprites { get; set; }
-    static private Image[] images { get; set; }
 
     private void Awake()
     {
@@ -25,19 +23,21 @@ public class Score : MonoBehaviour
         scoreDigit = ScoreDigit;
         scoreMax = ScoreMax;
 
-        sprites = Sprites;
-        images = Images;
-
         images[0].sprite = sprites[0];
 
         for (int i = 1; i < images.Length; i++)
         {
-            images[i].sprite = sprites[sprites.Length - 1];
-            //images[i].sprite = sprites[0];
+            //images[i].sprite = sprites[sprites.Length - 1];
+            images[i].sprite = sprites[0];
         }
     }
 
-    static public void SetScore(float s)
+    static public int GetBestScore()
+    {
+        return RankInfo.GetRankInfo(0).score;
+    }
+
+    public void SetScore(float s)
     {
         s *= scoreIndex;
 
@@ -51,12 +51,12 @@ public class Score : MonoBehaviour
             {
                 score = (int)s;
             }
-            
-            ScoreDigitCheck();
+
+            DisplayScore();
         }
     }
 
-    static private void ScoreDigitCheck()
+    public void DisplayScore()
     {
         bool isDisplay = false;
         int workscore = score;
@@ -79,5 +79,10 @@ public class Score : MonoBehaviour
             // 最大の位の値を取り除く
             workscore -= work * (int)Mathf.Pow(10, scoreDigit - 1 - i);
         }
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }

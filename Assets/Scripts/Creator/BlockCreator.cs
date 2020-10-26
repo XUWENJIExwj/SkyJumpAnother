@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlockCreator : ObjectCreator
 {
     [SerializeField] private Rigidbody2D playerRb = null;
+    [SerializeField] private Score score = null;
     [SerializeField] private float blockWidthSpaceMinDefault = 0.0f;
     [SerializeField] private float blockWidthSpaceMaxDefault = 0.0f;
     [SerializeField] private float blockHeightSpaceMinDefault = 0.0f;
@@ -37,6 +38,7 @@ public class BlockCreator : ObjectCreator
 
             block_script.SetPlayerInfo(player, playerRb);
             block_script.SetTrajectory(trajectory);
+            block_script.SetScore(score);
         }
 
         return objs;

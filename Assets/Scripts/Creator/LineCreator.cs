@@ -15,7 +15,7 @@ public class LineCreator : ObjectCreator
     protected override void Awake()
     {
         linePosYIndex = ScreenInfo.bgPosYDeviationMatchX * ScreenInfo.screenCoefficient.x - ScreenInfo.cameraOrthographicSize;
-        transform.position = new Vector3(0.0f, 10.0f * ScreenInfo.screenCoefficient.x + linePosYIndex, 0.0f);
+        transform.position = new Vector3(0.0f, 10.0f * ScreenInfo.screenCoefficient.x + linePosYIndex, 3.0f);
         SetText(100);
 
         objNum = (int)Mathf.Ceil(objNum * ScreenInfo.screenCoefficient.x);

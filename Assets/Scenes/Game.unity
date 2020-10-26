@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -146,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75377902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971379616}
@@ -175,6 +175,7 @@ MonoBehaviour:
   heightRangeMax: 0
   bgDivided: 0
   playerRb: {fileID: 1585020905}
+  score: {fileID: 589460252}
   blockWidthSpaceMinDefault: 1.8
   blockWidthSpaceMaxDefault: 4
   blockHeightSpaceMinDefault: 1.2
@@ -786,8 +787,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 535497316}
-  - component: {fileID: 535497317}
   - component: {fileID: 535497318}
+  - component: {fileID: 535497317}
   m_Layer: 0
   m_Name: UI_Fade
   m_TagString: Untagged
@@ -846,6 +847,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!114 &535497318
 MonoBehaviour:
@@ -906,7 +908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 265.5995, y: 497.56757}
+  m_AnchoredPosition: {x: 256, y: 497.568}
   m_SizeDelta: {x: 41.44865, y: 51.120003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &589460252
@@ -921,10 +923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d74ddab82520fe44ad7c8015e0824e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   ScoreIndex: 10
   ScoreDigit: 5
   ScoreMax: 99999
-  Sprites:
+  sprites:
   - {fileID: -4677205242863488633, guid: 5e8affe97214b264490c3b3087172973, type: 3}
   - {fileID: 859809963154828141, guid: 5e8affe97214b264490c3b3087172973, type: 3}
   - {fileID: -8750563325967366506, guid: 5e8affe97214b264490c3b3087172973, type: 3}
@@ -936,7 +939,7 @@ MonoBehaviour:
   - {fileID: -2095093859085678079, guid: 5e8affe97214b264490c3b3087172973, type: 3}
   - {fileID: 1529409630825075727, guid: 5e8affe97214b264490c3b3087172973, type: 3}
   - {fileID: -8311989477641001193, guid: 48d1f63dccfaa834f8b58e762d1e2b22, type: 3}
-  Images:
+  images:
   - {fileID: 1065110870}
   - {fileID: 1790186599}
   - {fileID: 945310347}
@@ -969,7 +972,7 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  uiPosXParentCoefficient: 0.81
+  uiPosXParentCoefficient: 0.8
   uiPosXChildrenCoefficient:
   - 1
   - 0
@@ -989,6 +992,7 @@ MonoBehaviour:
   positionMode: 1
   orderMode: 0
   orderReference: 1
+  orderStartIndex: 1
   spaceCoefficient: -1
 --- !u!1 &620853750
 GameObject:
@@ -1079,7 +1083,7 @@ Transform:
   m_GameObject: {fileID: 620853750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 1517944141}
   m_RootOrder: 0
@@ -1098,7 +1102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objSize: {x: 0, y: 0}
   objHalfSize: {x: 0, y: 0}
-  objSizeDefault: {x: 0.2, y: 0.2}
+  objSizeDefault: {x: 0.15, y: 0.15}
   objSizeDeviation: {x: 0, y: 0}
   sizeSliced: {x: 1, y: 1}
 --- !u!1 &683890970
@@ -1187,7 +1191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853767989}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 222825374}
@@ -1216,6 +1220,7 @@ MonoBehaviour:
   heightRangeMax: 0
   bgDivided: 0
   playerRb: {fileID: 1585020905}
+  score: {fileID: 589460252}
   blockWidthSpaceMinDefault: 1.8
   blockWidthSpaceMaxDefault: 4
   blockHeightSpaceMinDefault: 1.2
@@ -1819,6 +1824,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!114 &1307248548
 MonoBehaviour:
@@ -1907,7 +1913,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330982729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971379616}
@@ -1964,7 +1970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363642562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 222825374}
@@ -2231,7 +2237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517944139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.32, z: 0}
+  m_LocalPosition: {x: 0, y: 4.32, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 620853753}
@@ -2631,7 +2637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615659511}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1265754752}
@@ -2681,17 +2687,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
+  bg: {fileID: 0}
   fade: {fileID: 535497318}
   uiPartsMatchX: []
   uiPartsMatchY:
   - {fileID: 1307248547}
   - {fileID: 589460253}
   - {fileID: 535497317}
-  objectProperties:
-  - {fileID: 1585020912}
   cameraBehaviour: {fileID: 519420030}
   player: {fileID: 1585020904}
   trajectory: {fileID: 261093566}
+  score: {fileID: 0}
   bgBehaviours:
   - {fileID: 971379617}
   - {fileID: 1265754750}
@@ -2872,7 +2878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832532032}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1265754752}
@@ -2901,6 +2907,7 @@ MonoBehaviour:
   heightRangeMax: 0
   bgDivided: 0
   playerRb: {fileID: 1585020905}
+  score: {fileID: 589460252}
   blockWidthSpaceMinDefault: 1.8
   blockWidthSpaceMaxDefault: 4
   blockHeightSpaceMinDefault: 1.2
