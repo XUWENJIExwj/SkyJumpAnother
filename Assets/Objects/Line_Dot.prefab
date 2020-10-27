@@ -99,3 +99,4 @@ MonoBehaviour:
   objSizeDefault: {x: 0.4, y: 0.4}
   objSizeDeviation: {x: 0, y: 0}
   sizeSliced: {x: 1, y: 1}
+  posDeviation: {x: 0, y: 0, z: 0}

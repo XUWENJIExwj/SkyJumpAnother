@@ -61,9 +61,9 @@ public class RankInfo : MonoBehaviour
         return rankData[0];
     }
 
-    static public bool CheckIfRankIn(int score)
+    static public bool CheckIfRankIn()
     {
-        if (score > rankData[rankData.Length - 1].score)
+        if (newRank.score > rankData[rankData.Length - 1].score)
         {
             return true;
         }
@@ -119,7 +119,7 @@ public class RankInfo : MonoBehaviour
         return newRank;
     }
 
-    static public void SetNewRankName(string name, int idx)
+    static public void InputRankName(string name, int idx)
     {
         rankData[idx].name = name;
     }

@@ -91,7 +91,7 @@ public class BlockNormal : MonoBehaviour
                 ScreenInfo.cameraOrthographicSize - // Cameraによる座標調整
                 ScreenInfo.bgPosYDeviationMatchX +
                 boxCollider.size.y / 2 * transform.localScale.y; // blockの中心から最高点の位置
-            score.SetScore(s / ScreenInfo.screenCoefficient.x);
+            score.AddScore(s / ScreenInfo.screenCoefficient.x);
         }
     }
 }

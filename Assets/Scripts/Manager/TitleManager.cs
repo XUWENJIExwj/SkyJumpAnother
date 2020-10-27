@@ -45,8 +45,4 @@ public class TitleManager : CommonManager
         Destroy(particle);
         base.PrepareToGoToNextScene(next_scene);
     }
-    public override void GoToNextScene()
-    {
-        base.GoToNextScene();
-    }
 }

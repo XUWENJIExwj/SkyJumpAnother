@@ -9,6 +9,9 @@ public class ObjectProperty : MonoBehaviour
     [SerializeField] private Vector2 objSizeDefault = Vector2.zero;
     [SerializeField] private Vector2 objSizeDeviation = Vector2.zero;
     [SerializeField] private Vector2 sizeSliced = Vector2.one;
+    [SerializeField] private Vector3 posParentCoefficient = Vector3.zero;
+
+    private Vector3 work;
 
     public struct ObjBorder
     {
@@ -29,6 +32,11 @@ public class ObjectProperty : MonoBehaviour
             sizeSliced = spriteRenderer.size;
         }
 
+        SetSize(new Vector3(objSizeDefault.x, objSizeDefault.y, 1.0f));
+    }
+
+    public void SetSize()
+    {
         SetSize(new Vector3(objSizeDefault.x, objSizeDefault.y, 1.0f));
     }
 
@@ -59,5 +67,13 @@ public class ObjectProperty : MonoBehaviour
         objBorder.right = transform.position.x + objHalfSize.x;
 
         return objBorder;
+    }
+
+    public void SetPos()
+    {
+        transform.position = new Vector3(
+            ScreenInfo.screenHalfSize.x * posParentCoefficient.x,
+            ScreenInfo.screenHalfSize.y * posParentCoefficient.y,
+            transform.position.z);
     }
 }

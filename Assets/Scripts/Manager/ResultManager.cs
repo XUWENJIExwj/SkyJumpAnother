@@ -7,34 +7,19 @@ using UnityEngine.UI;
 
 public class ResultManager : CommonManager
 {
-    [SerializeField] private GameObject scoreFrame = null;
     [SerializeField] private Score score = null;
     [SerializeField] private Vector2 scoreDeviation = Vector2.zero;
     [SerializeField] private Score scoreBest = null;
     [SerializeField] private Vector2 scoreBestDeviation = Vector2.zero;
+    [SerializeField] private InputField inputer = null;
+    [SerializeField] private CheckStringByte checkStringByte = null;
+    [SerializeField] private ObjectProperty lightObj = null;
+    [SerializeField] private Vector2 lightDeviation = Vector2.zero;
+    [SerializeField] [Range(0.0f, 1.0f)] private float lightSizeSpeed = 0.0f;
+    [SerializeField] private SpriteRenderer player = null;
+    [SerializeField] private PlayerSoul playerSoul = null;
 
-    //public GameObject canvasOldScene;
-    //public CanvasManager canvasManager;
-    //public GameObject scoreDisplay;
-    //public Score score;
-    //public Score scoreBest;
-    //public Score scoreOther;
-    //public GameObject scoreFrame;
-    //public GameObject lightObj;
-    //public float lightSize;
-    //public bool hasCreatedSoul;
-    //public GameObject player;
-    //public GameObject soulPrefab;
-    //public InputField inputer;
-    //public CheckStringByte checkStringByte;
-
-    Vector2 work;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-    }
+    private Vector2 posFix;
 
     protected override void Start()
     {
@@ -42,254 +27,133 @@ public class ResultManager : CommonManager
         AudioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
         base.Start();
 
-        work.x = score.transform.position.x;
-        work.y = score.transform.position.y;
+        LoadScoreInfo();
 
-        FixScorePos();
-        FixScoreBestPos();
+        posFix.x = score.transform.position.x;
+        posFix.y = score.transform.position.y;
+
+        FixPos(score.gameObject, scoreDeviation);
+        FixPos(scoreBest.gameObject, scoreBestDeviation);
+
+        InitLight();
+        FixPos(lightObj.gameObject, lightDeviation);
+
+        SetPlayerSkinColor();
+        playerSoul.gameObject.SetActive(false);
     }
 
-    //private void Update()
-    //{
-    //    score.transform.position = new Vector3(
-    //        work.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.x,
-    //        work.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.y,
-    //        score.transform.position.z);
-    //}
-
-    private void FixScorePos()
+    public override void UpdateThisScene()
     {
-        score.transform.position = new Vector3(
-            score.transform.position.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.x,
-            score.transform.position.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreDeviation.y,
-            score.transform.position.z);
+        SetLightSize();
+
+        if (lightObj.transform.localScale.x >= lightObj.GetObjSize().x)
+        {
+            playerSoul.gameObject.SetActive(true);
+            CreateSoul();
+        }
     }
 
-    private void FixScoreBestPos()
+    private void LoadScoreInfo()
     {
-        scoreBest.transform.position = new Vector3(
-            scoreBest.transform.position.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreBestDeviation.x,
-            scoreBest.transform.position.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * scoreBestDeviation.y,
-            scoreBest.transform.position.z);
+        score.SetScore(100);
+        //score.SetScore(RankInfo.GetNewRankInfo().score);
+
+        RankInfo.LoadRank();
+        scoreBest.SetScore(RankInfo.GetRankInfo(0).score);
     }
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
+    private void SetRankInfo()
+    {
+        if (RankInfo.CheckIfRankIn())
+        {
+            inputer.gameObject.SetActive(true);
 
-    //    RectTransform frame = scoreFrame.GetComponent<RectTransform>();
+            RankInfo.SortRank();
+        }
+    }
 
-    //    // AudioManagerへのアタッチ
-    //    if (!GameObject.Find("AudioManager"))
-    //    {
-    //        Instantiate(audioManagerPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity).name = "AudioManager";
-    //    }
-    //    audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    private void FixPos(GameObject game_object, Vector3 deviation)
+    {
+        game_object.transform.position = new Vector3(
+            game_object.transform.position.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * deviation.x,
+            game_object.transform.position.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * deviation.y,
+            game_object.transform.position.z);
+    }
 
-    //    // SkinManagerへのアタッチ
-    //    if (!GameObject.Find("SkinSupport"))
-    //    {
-    //        Instantiate(skinSupportPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity).name = "SkinSupport";
-    //    }
-    //    skinSupport = GameObject.Find("SkinSupport").GetComponent<SkinInfo>();
+    public void SetPlayerSkinColor()
+    {
+        player.color = new Vector4(
+            SkinInfo.skinColor.r * SkinInfo.colorCoefficient,
+            SkinInfo.skinColor.g * SkinInfo.colorCoefficient,
+            SkinInfo.skinColor.b * SkinInfo.colorCoefficient,
+            1.0f);
+    }
 
-    //    //player.GetComponent<SpriteRenderer>().color = new Vector4(
-    //    //    skinSupport.GetPlayerColor().r * 140 / 255.0f,
-    //    //    skinSupport.GetPlayerColor().g * 140 / 255.0f,
-    //    //    skinSupport.GetPlayerColor().b * 140 / 255.0f,
-    //    //    1.0f);
+    public void InputNameOK()
+    {
+        int idx = RankInfo.GetNewRankInfo().rank - 1;
 
-    //    //player.GetComponent<SpriteRenderer>().color = skinSupport.GetPlayerColor();
+        bool all_blank = true;
 
-    //    if (canvasOldScene = GameObject.Find("Canvas"))
-    //    {
-    //        score = canvasOldScene.GetComponentInChildren<Score>();
-    //        Destroy(canvasOldScene);
-    //    }
-    //    else
-    //    {
-    //        scoreOther.gameObject.SetActive(true);
-    //        score = scoreOther;
-    //        score.tag = "Score";
-    //        //score.score = 100;
-    //    }
+        for (int i = 0; i < inputer.textComponent.text.Length; i++)
+        {
+            if (inputer.textComponent.text[i] != 0x20)
+            {
+                all_blank = false;
+                break;
+            }
+        }
 
-    //    score.transform.SetParent(scoreDisplay.transform);
+        if (!all_blank)
+        {
+            RankInfo.InputRankName(inputer.textComponent.text, idx);
+        }
 
-    //    //scoreBest.scoreIndex = score.scoreIndex;
+        checkStringByte.MakeCharacterToLimit(RankInfo.GetRankInfo(idx).name);
+        RankInfo.SaveRank(idx);
 
-    //    canvasManager.SetScorePosition(-40.0f, frame.anchoredPosition.y - 15.0f);
-    //    canvasManager.SetScoreSize(0.65f, 0.65f);
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
+        inputer.gameObject.SetActive(false);
+    }
 
-    //    //rank.LoadRankBinary();
+    public void InputNameCancel()
+    {
+        inputer.textComponent.text = "";
 
-    //    //rank.LoadRank();
+        AudioManager.PlaySE(AudioManager.AudioSourceIndex.AUDIO_SOURCE_SE_TYPE_A, AudioManager.SE.SE_TITLE, 0.5f);
+        inputer.gameObject.SetActive(false);
+    }
 
-    //    //if (rank.CheckIfRankIn(score.score))
-    //    //{
-    //    //    inputer.gameObject.SetActive(true);
-    //    //    // 入力処理
-    //    //    rank.SetNewRankInfo("Player", score.score);
-    //    //    rank.SortRank();
-    //    //    //rank.SortRankBinary();
-    //    //}
+    public void InitLight()
+    {
+        lightObj.SetSize();
+        lightObj.SetPos();
+        lightObj.transform.localScale = new Vector3(0.0f, lightObj.transform.localScale.y, lightObj.transform.localScale.z);
+    }
 
-    //    //scoreBest.SetScore((float)rank.LoadChampionInfo().score / score.scoreIndex);
+    public void SetLightSize()
+    {
+        if (lightObj.transform.localScale.x < lightObj.GetObjSize().x && Time.fixedTime >= 0.3f)
+        {
+            lightObj.transform.localScale = new Vector3(lightObj.transform.localScale.x + lightSizeSpeed, lightObj.transform.localScale.y, lightObj.transform.localScale.z);
+        }
+    }
 
-    //    canvasManager.SetScoreBestPosition(45.0f, frame.anchoredPosition.y - 175.0f);
-    //    canvasManager.SetScoreBestSize(0.48f, 0.48f);
+    public void CreateSoul()
+    {
+        //Vector3 pos = new Vector3(-0.6f, -3.1f, -2.0f);
+        //GameObject soul = Instantiate(soulPrefab, pos, Quaternion.identity);
+        //Animation animation = soul.GetComponent<Animation>();
 
-    //    // BGMの再生
-    //    //audioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
+        //int clip_idx = (int)SkinInfo.skinType;
+        //string clip = "Soul0" + clip_idx.ToString();
+        //animation.clip = animation.GetClip(clip);
+        //animation.Play();
+    }
 
-    //    hasCreatedSoul = false;
-
-    //    fade.SetFadeState(Fade.FadeState.FADE_STATE_IN);
-    //}
-
-    //private void FixedUpdate()
-    //{
-    //    switch (fade.GetFadeState())
-    //    {
-    //        case Fade.FadeState.FADE_STATE_IN:
-    //            fade.FadeIn();
-    //            break;
-    //        case Fade.FadeState.FADE_STATE_OUT:
-    //            fade.FadeOut();
-    //            break;
-    //        case Fade.FadeState.FADE_STATE_NEXT_SCENE:
-    //            Destroy(canvasManager.gameObject);
-    //            SceneManager.LoadScene("Title");
-    //            break;
-    //        default:
-    //            SetLightSize();
-
-    //            if (lightObj.transform.localScale.x >= 1.0f && !hasCreatedSoul)
-    //            {
-    //                CreateSoul();
-    //            }
-    //            break;
-    //    }
-    //}
-
-    //public void InputNameOK()
-    //{
-    //    //int idx = rank.GetNewRankInfo().rank - 1;
-    //    //rank.SetNewRankName(inputer.textComponent.text, idx);
-
-    //    //checkStringByte.MakeCharacterToLimit(rank.GetRankInfo(idx).name);
-
-    //    //bool all_blank = true;
-
-    //    //for (int i = 0; i < inputer.textComponent.text.Length; i++)
-    //    //{
-    //    //    if (inputer.textComponent.text[i] != 0x20)
-    //    //    {
-    //    //        all_blank = false;
-    //    //        break;
-    //    //    }
-    //    //}
-
-    //    //if(all_blank)
-    //    //{
-    //    //    rank.SetNewRankName("Player", idx);
-    //    //}
-
-    //    //rank.SaveRank(idx);
-    //    //rank.SaveRankBinary();
-
-    //    //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
-    //    inputer.gameObject.SetActive(false);
-    //}
-
-    //public void InputNameCancel()
-    //{
-    //    inputer.textComponent.text = "";
-
-    //    //audioManager.PlaySE(AudioManager.SE.SE_RESULT, 1, 0.5f);
-    //    inputer.gameObject.SetActive(false);
-    //}
-
-    //// Update is called once per frame
-    //public void GoToTitleScene()
-    //{
-    //    InputNameCancel();
-    //    fade.SetFadeState(Fade.FadeState.FADE_STATE_OUT);
-    //}
-
-    //    public int LoadScore()
-    //    {
-    //        string path;
-    //        string filename = "/score.txt";
-
-    //        if (Application.isEditor)
-    //        {
-    //            path = Application.dataPath + filename;
-    //        }
-    //        else
-    //        {
-    //#if UNITY_IOS
-
-    //#elif UNITY_ANDROID
-
-    //            path = Application.persistentDataPath + filename;
-    //#endif
-    //        }
-
-    //        if (File.Exists(path))
-    //        {
-    //            StreamReader sr = new StreamReader(path);
-    //            int s = int.Parse(sr.ReadLine());
-    //            sr.Close();
-    //            return s;
-    //        }
-    //        else
-    //        {
-    //            return 0;
-    //        }
-    //    }
-
-    //    public void SaveScore(string s)
-    //    {
-    //        string path;
-    //        string filename = "/score.txt";
-
-    //        if (Application.isEditor)
-    //        {
-    //            path = Application.dataPath + filename;
-    //        }
-    //        else
-    //        {
-    //#if UNITY_IOS
-
-    //#elif UNITY_ANDROID
-
-    //            path = Application.persistentDataPath + filename;
-    //#endif
-    //        }
-
-    //        StreamWriter sw = new StreamWriter(path, false); //true=追記 false=上書き
-    //        sw.WriteLine(s);
-    //        sw.Flush();
-    //        sw.Close();
-    //    }
-
-    //public void SetLightSize()
-    //{
-    //    if (lightObj.transform.localScale.x < 1.0f && Time.fixedTime >= 0.3f)
-    //    {
-    //        lightObj.transform.localScale = new Vector3(lightObj.transform.localScale.x + lightSize, lightObj.transform.localScale.y, lightObj.transform.localScale.z);
-    //    }
-    //}
-
-    //public void CreateSoul()
-    //{
-    //    hasCreatedSoul = true;
-    //    Vector3 pos = new Vector3(-0.6f, -3.1f, -2.0f);
-    //    GameObject soul = Instantiate(soulPrefab, pos, Quaternion.identity);
-    //    Animation animation = soul.GetComponent<Animation>();
-    //    //string clip = "Soul0" + skinSupport.GetPlayerType().ToString();
-    //    //animation.clip = animation.GetClip(clip);
-    //    //animation.Play();
-    //}
+    public override void PrepareToGoToNextScene(string next_scene)
+    {
+        lightObj.gameObject.SetActive(false);
+        base.PrepareToGoToNextScene(next_scene);
+    }
 }

@@ -10,6 +10,7 @@ public abstract class CommonManager : MonoBehaviour
     [SerializeField] protected Fade fade;
     [SerializeField] protected UIProperty[] uiPartsMatchX = null; // Widthによる拡大縮小
     [SerializeField] protected UIProperty[] uiPartsMatchY = null; // Heightによる拡大縮小
+    [SerializeField] protected ObjectProperty[] objectProperties = null;
 
     protected string nextScene;
 
@@ -102,6 +103,15 @@ public abstract class CommonManager : MonoBehaviour
                 ui_property.SetUISizeMatchY();
                 ui_property.SetUIPosition();
             }
-        }   
+        }
+
+        if (objectProperties != null)
+        {
+            foreach (ObjectProperty obj_property in objectProperties)
+            {
+                obj_property.SetSize();
+                obj_property.SetPos();
+            }
+        }
     }
 }

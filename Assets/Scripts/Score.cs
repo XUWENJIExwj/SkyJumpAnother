@@ -37,7 +37,7 @@ public class Score : MonoBehaviour
         return RankInfo.GetRankInfo(0).score;
     }
 
-    public void SetScore(float s)
+    public void AddScore(float s)
     {
         s *= scoreIndex;
 
@@ -54,6 +54,12 @@ public class Score : MonoBehaviour
 
             DisplayScore();
         }
+    }
+
+    public void SetScore(int s)
+    {
+        score = s;
+        DisplayScore();
     }
 
     public void DisplayScore()

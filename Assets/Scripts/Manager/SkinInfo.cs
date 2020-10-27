@@ -19,10 +19,13 @@ public class SkinInfo : MonoBehaviour
     static public SkinType skinType { get; private set; }
     static public Color skinColor { get; private set; }
 
+    static public float colorCoefficient { get; private set; }
+
     private void Awake()
     {
         skinType = SkinType.SKIN_TYPE_00;
         skinColor = Color.white;
+        colorCoefficient = 140 / 255.0f;
 
         // 完成後削除
         if (!isExist)
