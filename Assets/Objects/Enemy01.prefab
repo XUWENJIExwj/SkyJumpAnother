@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objSize: {x: 0, y: 0}
   objHalfSize: {x: 0, y: 0}
-  objSizeDefault: {x: 0.08, y: 0.08}
+  objSizeDefault: {x: 0.09, y: 0.09}
   objSizeDeviation: {x: 0, y: 0}
   sizeSliced: {x: 1, y: 1}
+  posParentCoefficient: {x: 0, y: 0, z: 0}

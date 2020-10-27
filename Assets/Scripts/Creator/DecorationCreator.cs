@@ -6,8 +6,8 @@ public class DecorationCreator : ObjectCreator
 {
     [SerializeField] private float decorationHeightSpaceMinDefault = 0.0f;
     [SerializeField] private float decorationHeightSpaceMaxDefault = 0.0f;
-    [SerializeField] private ObjectProperty[] objectPropertys;
-    [SerializeField] private SpriteRenderer[] spriteRenderers;
+    [SerializeField] private ObjectProperty[] objectPropertys = null;
+    [SerializeField] private SpriteRenderer[] spriteRenderers = null;
     [SerializeField] private int step = 0;
 
     protected override void Awake()

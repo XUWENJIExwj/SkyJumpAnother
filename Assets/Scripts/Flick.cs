@@ -19,15 +19,12 @@ public class Flick : MonoBehaviour
 
     [SerializeField] private bool isDragging = false;
 
-    // Start is called before the first frame update
     private void Awake()
     {
-        //pushForce *= ScreenInfo.screenCoefficient.x;
         distanceMax *= Mathf.Sqrt(ScreenInfo.screenCoefficient.x);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -86,7 +83,6 @@ public class Flick : MonoBehaviour
         distance = Vector2.Distance(startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
         force = direction * distance * pushForce;
-        //force = direction * distance;
 
         player.SetPlayerState(ObjectWithFlick.PlayerState.PLAYER_STATE_TAP);
         trajectory.UpdateDots(player.pos, force);
@@ -108,10 +104,6 @@ public class Flick : MonoBehaviour
 
             direction = (startPoint - endPoint).normalized;
             force = direction * distance * pushForce;
-            //force = direction * distance;
-
-            //just for debug
-            //Debug.DrawLine(startPoint, endPoint);
 
             player.UpdateDirection(direction.x);
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] private int score;
+    [SerializeField] private int score = 0;
     [SerializeField] private int ScoreIndex = 0;
     [SerializeField] private int ScoreDigit = 5;
     [SerializeField] private int ScoreMax = 99999;
@@ -18,7 +18,6 @@ public class Score : MonoBehaviour
 
     private void Awake()
     {
-        score = 0;
         scoreIndex = ScoreIndex;
         scoreDigit = ScoreDigit;
         scoreMax = ScoreMax;
@@ -27,8 +26,7 @@ public class Score : MonoBehaviour
 
         for (int i = 1; i < images.Length; i++)
         {
-            //images[i].sprite = sprites[sprites.Length - 1];
-            images[i].sprite = sprites[0];
+            images[i].sprite = sprites[sprites.Length - 1];
         }
     }
 
@@ -72,7 +70,7 @@ public class Score : MonoBehaviour
             // 最大の位の値を取り出す
             int work = workscore / (int)Mathf.Pow(10, scoreDigit - 1 - i);
 
-            if (work == 0 && !isDisplay)
+            if (work == 0 && !isDisplay && i < scoreDigit - 1)
             {
                 images[scoreDigit - 1 - i].sprite = sprites[sprites.Length - 1];
             }

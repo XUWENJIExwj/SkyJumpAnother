@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3cf65d9fe9dc44880c2e523e99d7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColorCoefficient: 140

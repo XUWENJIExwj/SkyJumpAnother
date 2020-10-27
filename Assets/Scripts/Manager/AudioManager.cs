@@ -35,9 +35,6 @@ public class AudioManager : MonoBehaviour
     static private AudioClip[] bgm;
     static private AudioClip[] se;
 
-    // 完成後削除
-    bool isExist = false;
-
     private void Awake()
     {
         audioSource = new AudioSource[audioSourceNum];
@@ -50,15 +47,7 @@ public class AudioManager : MonoBehaviour
         bgm = Bgm;
         se = Se;
 
-        // 完成後削除
-        if (!isExist)
-        {
-            DontDestroyOnLoad(gameObject);
-            isExist = true;
-        }
-
-        // 完成後復元
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     static public void PlayBGM(BGM bgm_idx)
@@ -66,6 +55,11 @@ public class AudioManager : MonoBehaviour
         audioSource[(int)AudioSourceIndex.AUDIO_SOURCE_BGM].clip = bgm[(int)bgm_idx];
         audioSource[(int)AudioSourceIndex.AUDIO_SOURCE_BGM].Play();
         audioSource[(int)AudioSourceIndex.AUDIO_SOURCE_BGM].loop = true;
+    }
+
+    static public void StopBGM()
+    {
+        audioSource[(int)AudioSourceIndex.AUDIO_SOURCE_BGM].Stop();
     }
 
     static public void PlaySE(AudioSourceIndex idx, SE se_idx, float volume = 1.0f)

@@ -21,11 +21,12 @@ public class GameManager : CommonManager
     protected override void Awake()
     {
         base.Awake();
-        nextScene = "Title";
+        nextScene = "Result";
     }
 
     protected override void Start()
     {
+        AudioManager.StopBGM();
         AudioManager.PlayBGM(AudioManager.BGM.BGM_GAME);
         base.Start();
 

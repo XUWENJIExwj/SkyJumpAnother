@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d70205817b29b4b4daf1cec3ec53a87c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objSize: {x: 0, y: 0}
   objHalfSize: {x: 0, y: 0}
-  objSizeDefault: {x: 0.08, y: 0.08}
+  objSizeDefault: {x: 0.09, y: 0.09}
   objSizeDeviation: {x: 0, y: 0}
   sizeSliced: {x: 1, y: 1}
+  posParentCoefficient: {x: 0, y: 0, z: 0}

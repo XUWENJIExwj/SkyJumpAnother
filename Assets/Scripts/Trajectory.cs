@@ -14,7 +14,7 @@ public class Trajectory : MonoBehaviour
     [SerializeField] [Range(0.01f, 0.3f)] private float dotMinScale = 0.0f;
     [SerializeField] [Range(0.3f, 1f)] private float dotMaxScale = 0.0f;
 
-    [SerializeField] Transform[] dotsList;
+    [SerializeField] Transform[] dotsList = null;
 
     private Vector2 pos; //dot pos
     private float timeStamp;

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -250,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 8810835291200434607, guid: 64ce68a39e6493b4baa956f37915d465,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64ce68a39e6493b4baa956f37915d465, type: 3}
@@ -269,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 265429404366696793, guid: 33d699396b6602e4887485a6f8c209d3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 265429404366696799, guid: 33d699396b6602e4887485a6f8c209d3,
         type: 3}
@@ -513,6 +513,7 @@ MonoBehaviour:
   objSizeDefault: {x: 1, y: 1}
   objSizeDeviation: {x: 0, y: 0}
   sizeSliced: {x: 1, y: 1}
+  posParentCoefficient: {x: 0, y: 0, z: 0}
 --- !u!1 &349450281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,6 +1106,7 @@ MonoBehaviour:
   objSizeDefault: {x: 0.15, y: 0.15}
   objSizeDeviation: {x: 0, y: 0}
   sizeSliced: {x: 1, y: 1}
+  posParentCoefficient: {x: 0, y: 0, z: 0}
 --- !u!1 &683890970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,6 +2565,7 @@ MonoBehaviour:
   objSizeDefault: {x: 0.13, y: 0.13}
   objSizeDeviation: {x: 0.03, y: 0.03}
   sizeSliced: {x: 1, y: 1}
+  posParentCoefficient: {x: 0, y: 0, z: 0}
 --- !u!114 &1585020913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2695,10 +2698,11 @@ MonoBehaviour:
   - {fileID: 1307248547}
   - {fileID: 589460253}
   - {fileID: 535497317}
+  objectProperties: []
   cameraBehaviour: {fileID: 519420030}
   player: {fileID: 1585020904}
   trajectory: {fileID: 261093566}
-  score: {fileID: 0}
+  score: {fileID: 589460252}
   bgBehaviours:
   - {fileID: 971379617}
   - {fileID: 1265754750}
@@ -2928,7 +2932,7 @@ PrefabInstance:
     - target: {fileID: 2914855796778847913, guid: 412474516b1198246887dfe689e58ce9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2914855796778847915, guid: 412474516b1198246887dfe689e58ce9,
         type: 3}
@@ -3087,7 +3091,7 @@ PrefabInstance:
     - target: {fileID: 4688089068427632670, guid: e9ff4234c4b374a45aa1a701065a5545,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ff4234c4b374a45aa1a701065a5545, type: 3}

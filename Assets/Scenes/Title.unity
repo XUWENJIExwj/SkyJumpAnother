@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -594,6 +594,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!114 &305841196
 MonoBehaviour:
@@ -607,6 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7010a823721f264cbbcf50847c26bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: -0.1
 --- !u!114 &305841197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,6 +784,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!114 &655344371
 MonoBehaviour:
@@ -995,11 +998,12 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
   text:
   - {fileID: 749964019}
   fontSizeDefault: 56
-  fontSizeParentCoefficient: 0
+  fontSizeParentCoefficient: {x: 0, y: 0}
   fontSizeChildrenCoefficient:
   - 1
 --- !u!1 &834233862
@@ -1163,6 +1167,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &878477934
 GameObject:
@@ -1364,6 +1369,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &990681154
 GameObject:
@@ -1466,6 +1472,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &1016975273
 GameObject:
@@ -1735,6 +1742,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &1126008924
 GameObject:
@@ -1827,6 +1835,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 72af7a35b76602640a81084567c91142, type: 3}
   - {fileID: 21300000, guid: b8be0f82b70038841bec4126db5405b9, type: 3}
   framesPerSec: 3
+  image: {fileID: 1126008926}
 --- !u!114 &1126008929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,6 +1863,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &1156238604
 GameObject:
@@ -6844,6 +6854,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
   particle: {fileID: 1363589305}
   particleSizeDefault: 1
@@ -6949,6 +6960,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &1436661986
 GameObject:
@@ -7308,6 +7320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7010a823721f264cbbcf50847c26bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: -0.1
 --- !u!114 &1685988241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7371,6 +7384,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &1695972462
 GameObject:
@@ -7598,6 +7612,7 @@ MonoBehaviour:
   positionMode: 0
   orderMode: 2
   orderReference: 2
+  orderStartIndex: 1
   spaceCoefficient: 0
 --- !u!1 &2030921014
 GameObject:

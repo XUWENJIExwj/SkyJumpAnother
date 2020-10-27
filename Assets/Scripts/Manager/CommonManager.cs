@@ -45,18 +45,16 @@ public abstract class CommonManager : MonoBehaviour
 
     private void Update()
     {
-        // 完成後削除
-        InitUI();
+        // Debug用
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    PlayerPrefs.DeleteAll();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            PlayerPrefs.DeleteAll();
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            RankInfo.SetOneScore();
-        } 
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    RankInfo.SetOneScore();
+        //} 
     }
 
     public virtual void GoToNextScene()

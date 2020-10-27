@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private float highestPosY;
+    [SerializeField] private float highestPosY = 0.0f;
 
     public void Init()
     {

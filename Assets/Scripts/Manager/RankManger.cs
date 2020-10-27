@@ -35,7 +35,7 @@ public class RankManger : CommonManager
                 scoreText[i].text = "-----";
             }
         }
-
+        AudioManager.StopBGM();
         AudioManager.PlayBGM(AudioManager.BGM.BGM_TITLE);
         base.Start();
     }

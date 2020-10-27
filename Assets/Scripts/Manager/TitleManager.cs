@@ -17,6 +17,7 @@ public class TitleManager : CommonManager
 
     protected override void Start()
     {
+        AudioManager.StopBGM();
         SetBgSize();
         DisplayBestScore();
         AudioManager.PlayBGM(AudioManager.BGM.BGM_TITLE);

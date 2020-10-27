@@ -25,9 +25,6 @@ public class ScreenInfo : MonoBehaviour
 
     static public float cameraOrthographicSize { get; private set; }
 
-    // 完成後削除
-    bool isExist = false;
-
     private void Awake()
     {
         // ScreenInfoの初期化
@@ -52,19 +49,6 @@ public class ScreenInfo : MonoBehaviour
 
         cameraOrthographicSize = Mathf.Max(screenHalfSize.x, screenHalfSize.y);
 
-        // 完成後削除
-        if (!isExist)
-        {
-            DontDestroyOnLoad(gameObject);
-            isExist = true;
-        }
-
-
-
-        //Debug.Log("Width: " + Screen.width);
-        //Debug.Log("Height: " + Screen.height);
-
-        // 完成後復元
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 }

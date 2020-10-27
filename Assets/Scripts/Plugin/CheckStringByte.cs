@@ -8,8 +8,7 @@ public class CheckStringByte : MonoBehaviour
     [SerializeField] InputField inputField = null;
     [SerializeField] int byteMax = 0;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         CheckCharacterLimit();
     }
@@ -65,9 +64,4 @@ public class CheckStringByte : MonoBehaviour
     {
         return !IfFullWidthCharacter(c) && (c == 0x20);
     }
-
-    //public bool IfFullWidthSpace(char c)
-    //{
-    //    return IfFullWidthCharacter(c) && (c == 0x20);
-    //}
 }

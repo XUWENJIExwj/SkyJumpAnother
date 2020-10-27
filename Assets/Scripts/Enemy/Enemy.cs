@@ -11,8 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool isRight = true;
     [SerializeField] private SpriteAnimation enemySpriteAnimation = null;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         direction = (int)Mathf.Pow(-1, Random.Range(0, 99) % 2);
         speed = Random.Range(speedMin, speedMax) * ScreenInfo.screenCoefficient.x;
@@ -21,7 +20,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Movement();
         UpdateDirection();

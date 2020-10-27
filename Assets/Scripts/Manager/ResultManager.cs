@@ -18,51 +18,55 @@ public class ResultManager : CommonManager
     [SerializeField] [Range(0.0f, 1.0f)] private float lightSizeSpeed = 0.0f;
     [SerializeField] private SpriteRenderer player = null;
     [SerializeField] private PlayerSoul playerSoul = null;
-
-    private Vector2 posFix;
+    [SerializeField] private bool hasCreateSoul = false; 
 
     protected override void Start()
     {
         SetBgSize();
+        AudioManager.StopBGM();
         AudioManager.PlayBGM(AudioManager.BGM.BGM_RESULT);
         base.Start();
 
-        LoadScoreInfo();
+        inputer.gameObject.SetActive(false);
 
-        posFix.x = score.transform.position.x;
-        posFix.y = score.transform.position.y;
+        CheckRankInfo();
+        LoadScoreInfo();
 
         FixPos(score.gameObject, scoreDeviation);
         FixPos(scoreBest.gameObject, scoreBestDeviation);
 
         InitLight();
+
         FixPos(lightObj.gameObject, lightDeviation);
 
         SetPlayerSkinColor();
+
         playerSoul.gameObject.SetActive(false);
+        playerSoul.SetSoulColor();
     }
 
     public override void UpdateThisScene()
     {
         SetLightSize();
 
-        if (lightObj.transform.localScale.x >= lightObj.GetObjSize().x)
+        if (lightObj.transform.localScale.x >= lightObj.GetObjSize().x && !hasCreateSoul)
         {
+            hasCreateSoul = true;
             playerSoul.gameObject.SetActive(true);
-            CreateSoul();
+            playerSoul.PlayerSoulAnimation();
         }
     }
 
     private void LoadScoreInfo()
     {
-        score.SetScore(100);
-        //score.SetScore(RankInfo.GetNewRankInfo().score);
+        score.SetScore(RankInfo.GetNewRankInfo().score);
 
         RankInfo.LoadRank();
+
         scoreBest.SetScore(RankInfo.GetRankInfo(0).score);
     }
 
-    private void SetRankInfo()
+    private void CheckRankInfo()
     {
         if (RankInfo.CheckIfRankIn())
         {
@@ -82,11 +86,7 @@ public class ResultManager : CommonManager
 
     public void SetPlayerSkinColor()
     {
-        player.color = new Vector4(
-            SkinInfo.skinColor.r * SkinInfo.colorCoefficient,
-            SkinInfo.skinColor.g * SkinInfo.colorCoefficient,
-            SkinInfo.skinColor.b * SkinInfo.colorCoefficient,
-            1.0f);
+        player.color = SkinInfo.skinLitColor;
     }
 
     public void InputNameOK()
@@ -139,21 +139,10 @@ public class ResultManager : CommonManager
         }
     }
 
-    public void CreateSoul()
-    {
-        //Vector3 pos = new Vector3(-0.6f, -3.1f, -2.0f);
-        //GameObject soul = Instantiate(soulPrefab, pos, Quaternion.identity);
-        //Animation animation = soul.GetComponent<Animation>();
-
-        //int clip_idx = (int)SkinInfo.skinType;
-        //string clip = "Soul0" + clip_idx.ToString();
-        //animation.clip = animation.GetClip(clip);
-        //animation.Play();
-    }
-
     public override void PrepareToGoToNextScene(string next_scene)
     {
         lightObj.gameObject.SetActive(false);
+        InputNameCancel();
         base.PrepareToGoToNextScene(next_scene);
     }
 }
