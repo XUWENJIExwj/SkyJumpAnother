@@ -23,6 +23,7 @@ public class SkinManager : MonoBehaviour
 
     [SerializeField] private MoveState moveState = MoveState.MOVE_STATE_STOP_DOWN;
     [SerializeField] [Range(-2.0f, 2.0f)] private float iconSpaceCoefficient = 0.0f;
+    [SerializeField] private float moveYDeviation = 0.0f;
     [SerializeField] [Range(0.0f, 1.0f)] private float moveTime = 0.0f;
 
     private void Start()
@@ -86,7 +87,7 @@ public class SkinManager : MonoBehaviour
         {
             moveState = MoveState.MOVE_STATE_MOVING_UP;
 
-            float icon_space = Screen.height * iconSpaceCoefficient;
+            float icon_space = Screen.height * iconSpaceCoefficient + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * moveYDeviation;
 
             for (int i = 1; i < skinIcon.Length; i++)
             {

@@ -689,7 +689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062322902d820c24294b9e9167523d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1585020903}
   highestPosY: 0
 --- !u!20 &519420031
 Camera:
@@ -2581,7 +2580,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   player: {fileID: 1585020904}
   trajectory: {fileID: 261093566}
-  unlimitedJump: 1
+  unlimitedJump: 0
   pushForce: 4
   startPoint: {x: 0, y: 0}
   endPoint: {x: 0, y: 0}
