@@ -103,7 +103,7 @@ public class BGBehaviour : MonoBehaviour
 
     public bool CheckIfInCameraView()
     {
-        if (transform.position.y + ScreenInfo.bgHalfSizeMatchX.y < cam.transform.position.y - ScreenInfo.screenHalfSize.y + ScreenInfo.bgPosYDeviationMatchX)
+        if (transform.position.y + ScreenInfo.bgHalfSizeMatchX.y < cam.transform.position.y - ScreenInfo.screenHalfSize.y - ScreenInfo.bgPosYDeviationMatchX)
         {
             return false;
         }

@@ -46,7 +46,7 @@ public class LineCreator : ObjectCreator
 
     public void UpdateLine(float cam_pos_y)
     {
-        if (transform.position.y < cam.transform.position.y-ScreenInfo.screenHalfSize.y)
+        if (transform.position.y < cam.transform.position.y - ScreenInfo.screenHalfSize.y - ScreenInfo.bgPosYDeviationMatchX)
         {
             step++;
             SetPosY();

@@ -61,13 +61,13 @@ public class ResultManager : CommonManager
     {
         score.SetScore(RankInfo.GetNewRankInfo().score);
 
-        RankInfo.LoadRank();
-
         scoreBest.SetScore(RankInfo.GetRankInfo(0).score);
     }
 
     private void CheckRankInfo()
     {
+        RankInfo.LoadRank();
+
         if (RankInfo.CheckIfRankIn())
         {
             inputer.gameObject.SetActive(true);
