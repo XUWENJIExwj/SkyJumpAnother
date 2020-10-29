@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ResultManager : CommonManager
 {
@@ -13,12 +14,18 @@ public class ResultManager : CommonManager
     [SerializeField] private Vector2 scoreBestDeviation = Vector2.zero;
     [SerializeField] private InputField inputer = null;
     [SerializeField] private CheckStringByte checkStringByte = null;
+    [SerializeField] private ObjectProperty ufo = null;
+    [SerializeField] private Vector3 ufoDeviation = Vector3.zero;
     [SerializeField] private ObjectProperty lightObj = null;
-    [SerializeField] private Vector2 lightDeviation = Vector2.zero;
-    [SerializeField] [Range(0.0f, 1.0f)] private float lightSizeSpeed = 0.0f;
+    [SerializeField] [Range(0.0f, 5.0f)] private float lightTime = 0.0f;
+    [SerializeField] [Range(0.0f, 5.0f)] private float lightDelayTime = 0.0f;
     [SerializeField] private SpriteRenderer player = null;
+    [SerializeField] private Vector3 playerDeviation = Vector3.zero;
     [SerializeField] private PlayerSoul playerSoul = null;
-    [SerializeField] private bool hasCreateSoul = false; 
+    [SerializeField] private Vector3 playerSoulDeviation = Vector3.zero;
+
+    // Debug用
+    //private Vector3 posFix;
 
     protected override void Start()
     {
@@ -36,31 +43,32 @@ public class ResultManager : CommonManager
         FixPos(scoreBest.gameObject, scoreBestDeviation);
 
         InitLight();
+        SetLightOn();
 
-        FixPos(lightObj.gameObject, lightDeviation);
+        // Debug用
+        //posFix = playerSoul.transform.position;
+
+        FixPos(ufo.gameObject, ufoDeviation);
 
         SetPlayerSkinColor();
+        FixPos(player.gameObject, playerDeviation);
 
         playerSoul.gameObject.SetActive(false);
         playerSoul.SetSoulColor();
+        FixPos(playerSoul.gameObject, playerSoulDeviation);
     }
 
     public override void UpdateThisScene()
     {
-        SetLightSize();
-
-        if (lightObj.transform.localScale.x >= lightObj.GetObjSize().x && !hasCreateSoul)
-        {
-            hasCreateSoul = true;
-            playerSoul.gameObject.SetActive(true);
-            playerSoul.PlayerSoulAnimation();
-        }
+        // Debug用
+        //FixPos(playerSoul.gameObject, posFix, playerSoulDeviation);
     }
 
     private void LoadScoreInfo()
     {
+        //score.SetScore(0);
+        //scoreBest.SetScore(0);
         score.SetScore(RankInfo.GetNewRankInfo().score);
-
         scoreBest.SetScore(RankInfo.GetRankInfo(0).score);
     }
 
@@ -83,6 +91,15 @@ public class ResultManager : CommonManager
             game_object.transform.position.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * deviation.y,
             game_object.transform.position.z);
     }
+
+    // Debug用
+    //private void FixPos(GameObject game_object, Vector3 pos_fix, Vector3 deviation)
+    //{
+    //    game_object.transform.position = new Vector3(
+    //        posFix.x + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * deviation.x,
+    //        posFix.y + (ScreenInfo.screenCoefficient.y / ScreenInfo.screenCoefficient.x - 1) * deviation.y,
+    //        posFix.z);
+    //}
 
     public void SetPlayerSkinColor()
     {
@@ -131,18 +148,35 @@ public class ResultManager : CommonManager
         lightObj.transform.localScale = new Vector3(0.0f, lightObj.transform.localScale.y, lightObj.transform.localScale.z);
     }
 
-    public void SetLightSize()
+    public void SetLightOn()
     {
-        if (lightObj.transform.localScale.x < lightObj.GetObjSize().x && Time.fixedTime >= 0.3f)
-        {
-            lightObj.transform.localScale = new Vector3(lightObj.transform.localScale.x + lightSizeSpeed, lightObj.transform.localScale.y, lightObj.transform.localScale.z);
-        }
+        lightObj.transform.DOScaleX(lightObj.GetObjSize().x, lightTime).SetDelay(lightDelayTime).OnComplete(() => CreateSoul());
+    }
+
+    public void SetLightOff()
+    {
+        lightObj.transform.DOScaleX(0, lightTime);
+    }
+
+    public override void GoToNextScene()
+    {
+        base.GoToNextScene();
     }
 
     public override void PrepareToGoToNextScene(string next_scene)
     {
-        lightObj.gameObject.SetActive(false);
-        InputNameCancel();
+        if (fade.GetFadeState() == Fade.FadeState.FADE_STATE_NONE)
+        {
+            SetLightOff();
+            InputNameCancel();
+        }
+        
         base.PrepareToGoToNextScene(next_scene);
+    }
+
+    public void CreateSoul()
+    {
+        playerSoul.gameObject.SetActive(true);
+        playerSoul.PlayerSoulAnimation();
     }
 }

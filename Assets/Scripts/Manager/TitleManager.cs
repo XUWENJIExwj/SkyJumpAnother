@@ -43,7 +43,11 @@ public class TitleManager : CommonManager
 
     public override void PrepareToGoToNextScene(string next_scene)
     {
-        Destroy(particle);
+        if (fade.GetFadeState() == Fade.FadeState.FADE_STATE_NONE)
+        {
+            Destroy(particle);
+        }
+            
         base.PrepareToGoToNextScene(next_scene);
     }
 }

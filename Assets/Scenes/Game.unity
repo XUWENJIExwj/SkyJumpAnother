@@ -2581,7 +2581,7 @@ MonoBehaviour:
   player: {fileID: 1585020904}
   trajectory: {fileID: 261093566}
   unlimitedJump: 0
-  pushForce: 4
+  pushForce: 4.3
   startPoint: {x: 0, y: 0}
   endPoint: {x: 0, y: 0}
   direction: {x: 0, y: 0}

@@ -29,6 +29,9 @@ public abstract class CommonManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Debug用
+        //InitUI();
+
         switch (fade.GetFadeState())
         {
             case Fade.FadeState.FADE_STATE_IN:
