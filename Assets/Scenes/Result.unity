@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -408,13 +408,13 @@ MonoBehaviour:
   - {fileID: 1161970618523381958}
   - {fileID: 762909895}
   score: {fileID: 4901484}
-  scoreDeviation: {x: 3, y: 0.55}
+  scoreDeviation: {x: 2, y: 0.55}
   scoreBest: {fileID: 350009581}
-  scoreBestDeviation: {x: 2.5, y: 2}
+  scoreBestDeviation: {x: 1.5, y: 1.5}
   inputer: {fileID: 597490622}
   checkStringByte: {fileID: 1406418641}
   ufo: {fileID: 762909895}
-  ufoDeviation: {x: 0, y: -6.95, z: 0}
+  ufoDeviation: {x: 0, y: -5.95, z: 0}
   lightObj: {fileID: 1938203486}
   lightTime: 1
   lightDelayTime: 0.3
